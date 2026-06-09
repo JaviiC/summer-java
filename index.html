@@ -1,1496 +1,1798 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prime of Studio — Clases de Java · Verano 2025</title>
-<meta name="description" content="Clases particulares, colectivas e intensivas de Java para todos los niveles. Patrones de diseño, SOLID, Java funcional y más. Madrid / Online.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #080b12;
-    --bg2: #0d1220;
-    --bg3: #111827;
-    --accent: #f97316;
-    --accent2: #fb923c;
-    --accent-dim: rgba(249,115,22,0.12);
-    --accent-border: rgba(249,115,22,0.3);
-    --text: #f1f5f9;
-    --text2: #94a3b8;
-    --text3: #475569;
-    --border: rgba(255,255,255,0.06);
-    --border2: rgba(255,255,255,0.1);
-    --green: #4ade80;
-    --green-dim: rgba(74,222,128,0.1);
-    --blue: #60a5fa;
-    --blue-dim: rgba(96,165,250,0.1);
-    --amber: #fbbf24;
-    --amber-dim: rgba(251,191,36,0.1);
-    --red: #f87171;
-    --red-dim: rgba(248,113,113,0.1);
-    --radius: 12px;
-    --radius-sm: 8px;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prime of Studio — Clases de Java · Verano 2025</title>
+  <meta name="description"
+    content="Clases particulares, colectivas e intensivas de Java para todos los niveles. Patrones de diseño, SOLID, Java funcional y más. Madrid / Online.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080b12;
+      --bg2: #0d1220;
+      --bg3: #111827;
+      --accent: #f97316;
+      --accent2: #fb923c;
+      --accent-dim: rgba(249, 115, 22, 0.12);
+      --accent-border: rgba(249, 115, 22, 0.3);
+      --text: #f1f5f9;
+      --text2: #94a3b8;
+      --text3: #475569;
+      --border: rgba(255, 255, 255, 0.06);
+      --border2: rgba(255, 255, 255, 0.1);
+      --green: #4ade80;
+      --green-dim: rgba(74, 222, 128, 0.1);
+      --blue: #60a5fa;
+      --blue-dim: rgba(96, 165, 250, 0.1);
+      --amber: #fbbf24;
+      --amber-dim: rgba(251, 191, 36, 0.1);
+      --red: #f87171;
+      --red-dim: rgba(248, 113, 113, 0.1);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
-    cursor: default;
-  }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      cursor: default;
+    }
 
-  /* ─── CUSTOM CURSOR ─── */
-  .cursor {
-    width: 8px; height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.15s ease, width 0.2s, height 0.2s, opacity 0.2s;
-    transform: translate(-50%, -50%);
-  }
-  .cursor-ring {
-    width: 32px; height: 32px;
-    border: 1px solid rgba(249,115,22,0.4);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9998;
-    transition: transform 0.08s linear, width 0.2s, height 0.2s, border-color 0.2s;
-    transform: translate(-50%, -50%);
-  }
-  body.hovering .cursor { transform: translate(-50%, -50%) scale(2.5); }
-  body.hovering .cursor-ring { width: 48px; height: 48px; border-color: rgba(249,115,22,0.2); }
+    /* ─── CUSTOM CURSOR ─── */
+    .cursor {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease, width 0.2s, height 0.2s, opacity 0.2s;
+      transform: translate(-50%, -50%);
+    }
 
-  /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 3rem;
-    background: rgba(8,11,18,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    transition: padding 0.3s;
-  }
-  nav.scrolled { padding: 0.85rem 3rem; }
+    .cursor-ring {
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(249, 115, 22, 0.4);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.08s linear, width 0.2s, height 0.2s, border-color 0.2s;
+      transform: translate(-50%, -50%);
+    }
 
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.15rem;
-    color: var(--text);
-    text-decoration: none;
-    letter-spacing: -0.02em;
-  }
-  .nav-logo span { color: var(--accent); }
+    body.hovering .cursor {
+      transform: translate(-50%, -50%) scale(2.5);
+    }
 
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 0.85rem;
-    color: var(--text2);
-    text-decoration: none;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -3px; left: 0; right: 0;
-    height: 1px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transition: transform 0.2s ease;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a:hover::after { transform: scaleX(1); }
+    body.hovering .cursor-ring {
+      width: 48px;
+      height: 48px;
+      border-color: rgba(249, 115, 22, 0.2);
+    }
 
-  .nav-cta {
-    background: var(--accent);
-    color: white;
-    text-decoration: none;
-    padding: 9px 22px;
-    border-radius: var(--radius-sm);
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(8, 11, 18, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
 
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 8rem 2rem 5rem;
-    position: relative;
-    overflow: hidden;
-  }
+    nav.scrolled {
+      padding: 0.85rem 3rem;
+    }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(249,115,22,0.1) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 40% at 80% 60%, rgba(96,165,250,0.05) 0%, transparent 50%),
-      radial-gradient(ellipse 30% 30% at 10% 80%, rgba(74,222,128,0.04) 0%, transparent 50%);
-    pointer-events: none;
-  }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
 
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
-    pointer-events: none;
-  }
+    .nav-logo span {
+      color: var(--accent);
+    }
 
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--accent-dim);
-    border: 1px solid var(--accent-border);
-    color: var(--accent2);
-    padding: 6px 16px;
-    border-radius: 100px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.6s 0.1s ease forwards;
-  }
-  .eyebrow-dot {
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-  }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
 
-  .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(3rem, 8vw, 6.5rem);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.75rem;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.2s ease forwards;
-  }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--accent);
-    position: relative;
-    display: inline-block;
-  }
-  .hero h1 em::after {
-    content: '';
-    position: absolute;
-    bottom: 4px; left: 0; right: 0;
-    height: 3px;
-    background: var(--accent);
-    opacity: 0.3;
-    border-radius: 2px;
-  }
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--text2);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+      position: relative;
+    }
 
-  .hero-sub {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: var(--text2);
-    max-width: 560px;
-    line-height: 1.7;
-    font-weight: 300;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.35s ease forwards;
-  }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
 
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.5s ease forwards;
-  }
+    .nav-links a:hover {
+      color: var(--text);
+    }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    border-radius: var(--radius-sm);
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    cursor: pointer;
-    border: none;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .btn-fill {
-    background: var(--accent);
-    color: white;
-  }
-  .btn-fill:hover {
-    background: var(--accent2);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(249,115,22,0.3);
-  }
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border2);
-  }
-  .btn-outline:hover {
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(255,255,255,0.2);
-    transform: translateY(-2px);
-  }
-  .btn-arrow {
-    transition: transform 0.2s;
-    display: inline-block;
-  }
-  .btn:hover .btn-arrow { transform: translateX(3px); }
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
 
-  .hero-stats {
-    display: flex;
-    gap: 3.5rem;
-    margin-top: 5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.7s ease forwards;
-  }
-  .stat-item { text-align: center; }
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--text3);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-top: 6px;
-  }
-  .stat-divider {
-    width: 1px;
-    background: var(--border2);
-    align-self: stretch;
-    margin: 4px 0;
-  }
+    .nav-cta {
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      padding: 9px 22px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+    }
 
-  /* ─── CODE FLOATS ─── */
-  .code-float {
-    position: absolute;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    line-height: 1.7;
-    pointer-events: none;
-    white-space: pre;
-    opacity: 0;
-    animation: fadeIn 1s 1.2s ease forwards;
-  }
-  .code-float.left {
-    left: 3rem; top: 25%;
-    color: rgba(249,115,22,0.18);
-    text-align: left;
-  }
-  .code-float.right {
-    right: 3rem; top: 35%;
-    color: rgba(96,165,250,0.14);
-    text-align: right;
-  }
+    .nav-cta:hover {
+      background: var(--accent2);
+      transform: translateY(-1px);
+    }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
 
-  /* ─── SECTION BASE ─── */
-  section { padding: 6rem 2rem; }
-  .container { max-width: 1140px; margin: 0 auto; }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(249, 115, 22, 0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 60%, rgba(96, 165, 250, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 30% 30% at 10% 80%, rgba(74, 222, 128, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
 
-  .section-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--accent);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: clamp(2rem, 4vw, 3rem);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-  .section-sub {
-    font-size: 1.05rem;
-    color: var(--text2);
-    max-width: 520px;
-    line-height: 1.7;
-    font-weight: 300;
-    margin-bottom: 3.5rem;
-  }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+      pointer-events: none;
+    }
 
-  /* ─── DIVIDER ─── */
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(249,115,22,0.25), transparent);
-    margin: 0 2rem;
-  }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      color: var(--accent2);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.1s ease forwards;
+    }
 
-  /* ─── MODALIDADES ─── */
-  .modalities-section { background: var(--bg2); }
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
 
-  .modalities-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
+    @keyframes pulse {
 
-  .mod-card {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 2.25rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s, background 0.3s;
-  }
-  .mod-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(249,115,22,0.06) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-  }
-  .mod-card:hover {
-    border-color: var(--accent-border);
-    transform: translateY(-6px);
-    background: rgba(255,255,255,0.03);
-  }
-  .mod-card:hover::before { opacity: 1; }
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
 
-  .mod-card.featured {
-    border-color: rgba(249,115,22,0.35);
-    background: rgba(249,115,22,0.04);
-  }
+      50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+    }
 
-  .mod-badge {
-    position: absolute;
-    top: 1.25rem; right: 1.25rem;
-    background: var(--accent-dim);
-    border: 1px solid var(--accent-border);
-    color: var(--accent2);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    padding: 3px 10px;
-    border-radius: 100px;
-    letter-spacing: 0.06em;
-  }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s ease forwards;
+    }
 
-  .mod-icon {
-    width: 48px; height: 48px;
-    background: var(--accent-dim);
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 1.5rem;
-  }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+      position: relative;
+      display: inline-block;
+    }
 
-  .mod-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 0.6rem;
-    letter-spacing: -0.01em;
-  }
+    .hero h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0.3;
+      border-radius: 2px;
+    }
 
-  .mod-desc {
-    font-size: 0.9rem;
-    color: var(--text2);
-    line-height: 1.65;
-    margin-bottom: 1.75rem;
-    font-weight: 300;
-  }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text2);
+      max-width: 560px;
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s ease forwards;
+    }
 
-  .mod-price {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 1.5rem;
-  }
-  .mod-price sup {
-    font-size: 1rem;
-    font-weight: 600;
-    vertical-align: super;
-  }
-  .mod-price small {
-    font-size: 0.8rem;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text3);
-    font-weight: 400;
-  }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s ease forwards;
+    }
 
-  .mod-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    margin-bottom: 2rem;
-  }
-  .mod-features li {
-    font-size: 0.875rem;
-    color: var(--text2);
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .mod-features li::before {
-    content: '→';
-    color: var(--accent);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+    }
 
-  .mod-cta {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 12px;
-    border-radius: var(--radius-sm);
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s, color 0.2s;
-    border: 1px solid var(--border2);
-    color: var(--text2);
-    background: transparent;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .mod-cta:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white;
-    transform: translateY(-1px);
-  }
-  .mod-card.featured .mod-cta {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white;
-  }
-  .mod-card.featured .mod-cta:hover {
-    background: var(--accent2);
-  }
+    .btn-fill {
+      background: var(--accent);
+      color: white;
+    }
 
-  /* ─── CURRICULUM ─── */
-  .curriculum-section { background: var(--bg); }
+    .btn-fill:hover {
+      background: var(--accent2);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(249, 115, 22, 0.3);
+    }
 
-  .curr-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1rem;
-  }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border2);
+    }
 
-  .curr-card {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    cursor: default;
-    transition: border-color 0.25s, background 0.25s, transform 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
-  .curr-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-  .curr-card:hover {
-    border-color: var(--border2);
-    background: rgba(255,255,255,0.035);
-    transform: translateY(-3px);
-  }
-  .curr-card:hover::after { transform: scaleX(1); }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
 
-  .curr-level {
-    display: inline-block;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 3px 10px;
-    border-radius: 100px;
-    margin-bottom: 0.9rem;
-  }
-  .lv-basic { background: var(--green-dim); color: var(--green); }
-  .lv-inter { background: var(--blue-dim); color: var(--blue); }
-  .lv-avanz { background: var(--amber-dim); color: var(--amber); }
-  .lv-expert { background: var(--red-dim); color: var(--red); }
+    .btn-arrow {
+      transition: transform 0.2s;
+      display: inline-block;
+    }
 
-  .curr-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-  }
+    .btn:hover .btn-arrow {
+      transform: translateX(3px);
+    }
 
-  .curr-topics {
-    font-size: 0.8rem;
-    color: var(--text3);
-    line-height: 1.65;
-  }
+    .hero-stats {
+      display: flex;
+      gap: 3.5rem;
+      margin-top: 5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.7s ease forwards;
+    }
 
-  /* ─── INTENSIVO TIMELINE ─── */
-  .intensivo-section { background: var(--bg2); }
+    .stat-item {
+      text-align: center;
+    }
 
-  .timeline {
-    max-width: 720px;
-    margin: 0 auto;
-    position: relative;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 19px; top: 20px; bottom: 20px;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--accent-border), transparent);
-  }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
 
-  .tl-item {
-    display: flex;
-    gap: 1.75rem;
-    margin-bottom: 0;
-    position: relative;
-  }
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 6px;
+    }
 
-  .tl-dot {
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    background: var(--accent-dim);
-    border: 1px solid var(--accent-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    flex-shrink: 0;
-    transition: background 0.2s, border-color 0.2s;
-    position: relative;
-    z-index: 1;
-  }
-  .tl-item:hover .tl-dot {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-  }
+    .stat-divider {
+      width: 1px;
+      background: var(--border2);
+      align-self: stretch;
+      margin: 4px 0;
+    }
 
-  .tl-body {
-    padding-bottom: 2.75rem;
-    flex: 1;
-    padding-top: 6px;
-  }
-  .tl-week {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.3rem;
-  }
-  .tl-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.35rem;
-    letter-spacing: -0.01em;
-  }
-  .tl-desc {
-    font-size: 0.875rem;
-    color: var(--text2);
-    line-height: 1.65;
-    font-weight: 300;
-  }
+    /* ─── CODE FLOATS ─── */
+    .code-float {
+      position: absolute;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      line-height: 1.7;
+      pointer-events: none;
+      white-space: pre;
+      opacity: 0;
+      animation: fadeIn 1s 1.2s ease forwards;
+    }
 
-  /* ─── SOBRE MÍ ─── */
-  .about-section { background: var(--bg); }
+    .code-float.left {
+      left: 3rem;
+      top: 25%;
+      color: rgba(249, 115, 22, 0.18);
+      text-align: left;
+    }
 
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    align-items: center;
-  }
+    .code-float.right {
+      right: 3rem;
+      top: 35%;
+      color: rgba(96, 165, 250, 0.14);
+      text-align: right;
+    }
 
-  .about-avatar {
-    aspect-ratio: 1;
-    max-width: 280px;
-    background: var(--bg3);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .about-avatar::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--accent);
-  }
-  .avatar-initials {
-    font-family: 'Syne', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .avatar-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--text3);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-  .about-content h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    margin-bottom: 1.25rem;
-  }
-  .about-content p {
-    font-size: 1rem;
-    color: var(--text2);
-    line-height: 1.75;
-    font-weight: 300;
-    margin-bottom: 1rem;
-  }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-  .skills-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 1.5rem;
-  }
-  .skill-chip {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 6px 14px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--text2);
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
-  .skill-chip:hover {
-    border-color: var(--accent-border);
-    color: var(--accent2);
-    background: var(--accent-dim);
-  }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
 
-  /* ─── FAQ ─── */
-  .faq-section { background: var(--bg2); }
-  .faq-list { max-width: 720px; display: flex; flex-direction: column; gap: 0; }
+      to {
+        opacity: 1;
+      }
+    }
 
-  .faq-item {
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-  .faq-item:first-child { border-top: 1px solid var(--border); }
+    /* ─── SECTION BASE ─── */
+    section {
+      padding: 6rem 2rem;
+    }
 
-  .faq-q {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 0;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-  .faq-q:hover { color: var(--accent2); }
-  .faq-q-text { font-size: 0.975rem; font-weight: 500; }
-  .faq-icon {
-    width: 22px; height: 22px;
-    border: 1px solid var(--border2);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem;
-    color: var(--text2);
-    transition: transform 0.25s, background 0.2s, border-color 0.2s;
-    flex-shrink: 0;
-  }
-  .faq-item.open .faq-icon {
-    transform: rotate(45deg);
-    background: var(--accent-dim);
-    border-color: var(--accent-border);
-    color: var(--accent);
-  }
-  .faq-a {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease, padding 0.35s;
-    font-size: 0.9rem;
-    color: var(--text2);
-    line-height: 1.7;
-    font-weight: 300;
-  }
-  .faq-item.open .faq-a {
-    max-height: 200px;
-    padding-bottom: 1.25rem;
-  }
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
 
-  /* ─── CTA FINAL ─── */
-  .cta-section {
-    background: var(--bg);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 50%; transform: translateX(-50%);
-    width: 800px; height: 400px;
-    background: radial-gradient(ellipse, rgba(249,115,22,0.08) 0%, transparent 65%);
-    pointer-events: none;
-  }
+    .section-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
 
-  .cta-section h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    margin-bottom: 1rem;
-    line-height: 1.05;
-  }
-  .cta-section p {
-    font-size: 1.1rem;
-    color: var(--text2);
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-  }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
 
-  .contact-row {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-  .contact-chip {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 10px 20px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--text2);
-    text-decoration: none;
-    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
-  }
-  .contact-chip:hover {
-    border-color: var(--accent-border);
-    color: var(--accent2);
-    background: var(--accent-dim);
-    transform: translateY(-2px);
-  }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text2);
+      max-width: 520px;
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 3.5rem;
+    }
 
-  /* ─── CONTACT FORM ─── */
-  .contact-form-wrap {
-    max-width: 640px;
-    margin: 2.5rem auto 0;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 2.25rem 2.5rem;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-  }
-  .contact-form-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-  }
-  .contact-form-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 0.35rem;
-    letter-spacing: -0.01em;
-  }
-  .contact-form-sub {
-    font-size: 0.85rem;
-    color: var(--text2);
-    font-weight: 300;
-    margin-bottom: 1.75rem;
-  }
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin-bottom: 1rem;
-  }
-  .form-group.full { grid-column: 1 / -1; }
-  .form-group label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--accent2);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-  .form-group input,
-  .form-group textarea {
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: var(--radius-sm);
-    padding: 11px 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    resize: none;
-    width: 100%;
-  }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: var(--text3); }
-  .form-group input:focus,
-  .form-group textarea:focus {
-    border-color: var(--accent-border);
-    box-shadow: 0 0 0 3px rgba(249,115,22,0.08);
-  }
-  .form-group textarea { min-height: 110px; }
-  .form-actions {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-top: 0.5rem;
-  }
-  .form-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    border-radius: var(--radius-sm);
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    font-family: 'DM Sans', sans-serif;
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-  }
-  .form-btn-wa {
-    background: #25D366;
-    color: white;
-  }
-  .form-btn-wa:hover {
-    background: #1ebe5d;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(37,211,102,0.25);
-  }
-  .form-btn-email {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border2);
-  }
-  .form-btn-email:hover {
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(255,255,255,0.2);
-    transform: translateY(-2px);
-  }
-  .form-note {
-    font-size: 0.75rem;
-    color: var(--text3);
-    margin-top: 1rem;
-    font-family: 'DM Mono', monospace;
-    text-align: center;
-  }
+    /* ─── DIVIDER ─── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.25), transparent);
+      margin: 0 2rem;
+    }
 
-  /* ─── FOOTER ─── */
-  footer {
-    padding: 2rem 3rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .footer-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1rem;
-    color: var(--text);
-    text-decoration: none;
-    letter-spacing: -0.02em;
-  }
-  .footer-logo span { color: var(--accent); }
-  footer p {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--text3);
-  }
+    /* ─── MODALIDADES ─── */
+    .modalities-section {
+      background: var(--bg2);
+    }
 
-  /* ─── SCROLL REVEAL ─── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
+    .modalities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
 
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    nav.scrolled { padding: 0.75rem 1.5rem; }
-    .nav-links { display: none; }
-    .code-float { display: none; }
-    .about-grid { grid-template-columns: 1fr; }
-    .about-avatar { max-width: 160px; margin: 0 auto; }
-    footer { flex-direction: column; text-align: center; }
-    .hero-stats { gap: 2rem; }
-    .stat-divider { display: none; }
-    .form-row { grid-template-columns: 1fr; }
-    .contact-form-wrap { padding: 1.75rem 1.5rem; }
-  }
-</style>
+    .mod-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s, background 0.3s;
+    }
+
+    .mod-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(249, 115, 22, 0.06) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .mod-card:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .mod-card:hover::before {
+      opacity: 1;
+    }
+
+    .mod-card.featured {
+      border-color: rgba(249, 115, 22, 0.35);
+      background: rgba(249, 115, 22, 0.04);
+    }
+
+    .mod-badge {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      color: var(--accent2);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      padding: 3px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.06em;
+    }
+
+    .mod-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-dim);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .mod-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .mod-desc {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+      font-weight: 300;
+    }
+
+    .mod-price {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .mod-price sup {
+      font-size: 1rem;
+      font-weight: 600;
+      vertical-align: super;
+    }
+
+    .mod-price small {
+      font-size: 0.8rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text3);
+      font-weight: 400;
+    }
+
+    .mod-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .mod-features li {
+      font-size: 0.875rem;
+      color: var(--text2);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .mod-features li::before {
+      content: '→';
+      color: var(--accent);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .mod-cta {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, color 0.2s;
+      border: 1px solid var(--border2);
+      color: var(--text2);
+      background: transparent;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      position: relative;
+      z-index: 10;
+    }
+
+    .mod-cta:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .mod-card.featured .mod-cta {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .mod-card.featured .mod-cta:hover {
+      background: var(--accent2);
+    }
+
+    /* ─── CURRICULUM ─── */
+    .curriculum-section {
+      background: var(--bg);
+    }
+
+    .curr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .curr-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      cursor: default;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .curr-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .curr-card:hover {
+      border-color: var(--border2);
+      background: rgba(255, 255, 255, 0.035);
+      transform: translateY(-3px);
+    }
+
+    .curr-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .curr-level {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 0.9rem;
+    }
+
+    .lv-basic {
+      background: var(--green-dim);
+      color: var(--green);
+    }
+
+    .lv-inter {
+      background: var(--blue-dim);
+      color: var(--blue);
+    }
+
+    .lv-avanz {
+      background: var(--amber-dim);
+      color: var(--amber);
+    }
+
+    .lv-expert {
+      background: var(--red-dim);
+      color: var(--red);
+    }
+
+    .curr-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .curr-topics {
+      font-size: 0.8rem;
+      color: var(--text3);
+      line-height: 1.65;
+    }
+
+    /* ─── INTENSIVO TIMELINE ─── */
+    .intensivo-section {
+      background: var(--bg2);
+    }
+
+    .timeline {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 20px;
+      bottom: 20px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent-border), transparent);
+    }
+
+    .tl-item {
+      display: flex;
+      gap: 1.75rem;
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .tl-dot {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tl-item:hover .tl-dot {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .tl-body {
+      padding-bottom: 2.75rem;
+      flex: 1;
+      padding-top: 6px;
+    }
+
+    .tl-week {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+
+    .tl-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.01em;
+    }
+
+    .tl-desc {
+      font-size: 0.875rem;
+      color: var(--text2);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ─── SOBRE MÍ ─── */
+    .about-section {
+      background: var(--bg);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-avatar {
+      aspect-ratio: 1;
+      max-width: 280px;
+      background: var(--bg3);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-avatar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .avatar-initials {
+      font-family: 'Syne', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .avatar-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .about-content h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-content p {
+      font-size: 1rem;
+      color: var(--text2);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .skills-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1.5rem;
+    }
+
+    .skill-chip {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 6px 14px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text2);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .skill-chip:hover {
+      border-color: var(--accent-border);
+      color: var(--accent2);
+      background: var(--accent-dim);
+    }
+
+    /* ─── FAQ ─── */
+    .faq-section {
+      background: var(--bg2);
+    }
+
+    .faq-list {
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .faq-q:hover {
+      color: var(--accent2);
+    }
+
+    .faq-q-text {
+      font-size: 0.975rem;
+      font-weight: 500;
+    }
+
+    .faq-icon {
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--border2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--text2);
+      transition: transform 0.25s, background 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--accent-dim);
+      border-color: var(--accent-border);
+      color: var(--accent);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s;
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding-bottom: 1.25rem;
+    }
+
+    /* ─── CTA FINAL ─── */
+    .cta-section {
+      background: var(--bg);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(249, 115, 22, 0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      line-height: 1.05;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      color: var(--text2);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .contact-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text2);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
+    }
+
+    .contact-chip:hover {
+      border-color: var(--accent-border);
+      color: var(--accent2);
+      background: var(--accent-dim);
+      transform: translateY(-2px);
+    }
+
+    /* ─── CONTACT FORM ─── */
+    .contact-form-wrap {
+      max-width: 640px;
+      margin: 2.5rem auto 0;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.25rem 2.5rem;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-form-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    .contact-form-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.01em;
+    }
+
+    .contact-form-sub {
+      font-size: 0.85rem;
+      color: var(--text2);
+      font-weight: 300;
+      margin-bottom: 1.75rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-sm);
+      padding: 11px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: none;
+      width: 100%;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text3);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent-border);
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.08);
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .form-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .form-btn-wa {
+      background: #25D366;
+      color: white;
+    }
+
+    .form-btn-wa:hover {
+      background: #1ebe5d;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.25);
+    }
+
+    .form-btn-email {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border2);
+    }
+
+    .form-btn-email:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--text3);
+      margin-top: 1rem;
+      font-family: 'DM Mono', monospace;
+      text-align: center;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-logo span {
+      color: var(--accent);
+    }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text3);
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      nav.scrolled {
+        padding: 0.75rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .code-float {
+        display: none;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-avatar {
+        max-width: 160px;
+        margin: 0 auto;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-stats {
+        gap: 2rem;
+      }
+
+      .stat-divider {
+        display: none;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form-wrap {
+        padding: 1.75rem 1.5rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- Cursor -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#" class="nav-logo">prime<span>.</span>of<span>studio</span></a>
-  <ul class="nav-links">
-    <li><a href="#modalidades">Modalidades</a></li>
-    <li><a href="#temario">Temario</a></li>
-    <li><a href="#intensivo">Intensivo</a></li>
-    <li><a href="#sobre-mi">Sobre mí</a></li>
-  </ul>
-  <a href="#contacto" class="nav-cta">Reservar plaza</a>
-</nav>
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">prime<span>.</span>of<span>studio</span></a>
+    <ul class="nav-links">
+      <li><a href="#modalidades">Modalidades</a></li>
+      <li><a href="#temario">Temario</a></li>
+      <li><a href="#intensivo">Intensivo</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+    </ul>
+    <a href="#contacto" class="nav-cta">Reservar plaza</a>
+  </nav>
 
-<!-- HERO -->
-<section class="hero" id="inicio">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
 
-  <div class="code-float left">@FunctionalInterface
-interface JavaDev {
-  void learn();
-  default void grow() {
-    this.learn();
-  }
-}
-// verano 2025</div>
+    <div class="code-float left">@FunctionalInterface
+      interface JavaDev {
+      void learn();
+      default void grow() {
+      this.learn();
+      }
+      }
+      // verano 2025</div>
 
-  <div class="code-float right">Stream&lt;Knowledge&gt;
-  .filter(Skill::isPractical)
-  .map(s -&gt; s.apply(you))
-  .forEach(System.out::println);</div>
+    <div class="code-float right">Stream&lt;Knowledge&gt;
+      .filter(Skill::isPractical)
+      .map(s -&gt; s.apply(you))
+      .forEach(System.out::println);</div>
 
-  <div class="hero-eyebrow">
-    <span class="eyebrow-dot"></span>
-    Clases de Java · Madrid &amp; Online · Verano 2025
-  </div>
-
-  <h1>Aprende <em>Java</em><br>de verdad,<br>este verano.</h1>
-
-  <p class="hero-sub">
-    Clases particulares, colectivas e intensivas para todos los niveles.
-    Desde fundamentos hasta patrones de diseño, SOLID y código limpio.
-  </p>
-
-  <div class="hero-actions">
-    <a href="#contacto" class="btn btn-fill">
-      Reservar plaza <span class="btn-arrow">→</span>
-    </a>
-    <a href="#temario" class="btn btn-outline">
-      Ver el temario
-    </a>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num">4</div>
-      <div class="stat-label">Niveles</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <div class="stat-num">3</div>
-      <div class="stat-label">Modalidades</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <div class="stat-num">10+</div>
-      <div class="stat-label">Módulos</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Práctico</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- MODALIDADES -->
-<section class="modalities-section" id="modalidades">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-tag">// modalidades</div>
-      <h2 class="section-title">¿Cómo quieres aprender?</h2>
-      <p class="section-sub">Elige la modalidad que mejor se adapta a tu ritmo, objetivos y disponibilidad.</p>
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Clases de Java · Madrid &amp; Online · Verano 2025
     </div>
 
-    <div class="modalities-grid">
-      <div class="mod-card reveal reveal-delay-1">
-        <div class="mod-icon">👤</div>
-        <div class="mod-name">Clase particular</div>
-        <div class="mod-desc">Atención 100% personalizada. Avanzamos a tu ritmo, trabajamos con tu código real y resolvemos tus dudas concretas.</div>
-        <div class="mod-price"><sup>€</sup>24,99 <small>/ hora</small></div>
-        <ul class="mod-features">
-          <li>Horario totalmente flexible</li>
-          <li>Temario adaptado a ti</li>
-          <li>Online o presencial (Madrid)</li>
-          <li>Revisión de tu propio código</li>
-          <li>Primera sesión de prueba gratis</li>
-        </ul>
-        <a href="https://wa.me/34674372040?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20clase%20particular%20de%20Java." class="mod-cta" target="_blank" rel="noopener">Reservar clase →</a>
-      </div>
+    <h1>Aprende <em>Java</em><br>de verdad,<br>este verano.</h1>
 
-      <div class="mod-card featured reveal reveal-delay-2">
-        <div class="mod-badge">★ Más popular</div>
-        <div class="mod-icon">👥</div>
-        <div class="mod-name">Clase colectiva</div>
-        <div class="mod-desc">Grupos reducidos de 2 a 4 personas. Más económico, dinámico y con la energía de aprender en compañía.</div>
-        <div class="mod-price"><sup>€</sup>14,99 <small>/ hora por persona</small></div>
-        <ul class="mod-features">
-          <li>Grupos de 2 a 4 alumnos</li>
-          <li>Dinámica colaborativa y retos</li>
-          <li>Sesiones de 2h mínimo</li>
-          <li>Precio accesible sin perder calidad</li>
-          <li>Primera sesión de prueba gratis</li>
-        </ul>
-        <a href="https://wa.me/34674372040?text=Hola%2C%20me%20gustar%C3%ADa%20unirme%20a%20una%20clase%20colectiva%20de%20Java." class="mod-cta" target="_blank" rel="noopener">Unirse al grupo →</a>
-      </div>
+    <p class="hero-sub">
+      Clases particulares, colectivas e intensivas para todos los niveles.
+      Desde fundamentos hasta patrones de diseño, SOLID y código limpio.
+    </p>
 
-      <div class="mod-card reveal reveal-delay-3">
-        <div class="mod-icon">🚀</div>
-        <div class="mod-name">Intensivo de verano</div>
-        <div class="mod-desc">Un plan estructurado de 4 semanas para subir de nivel de forma acelerada. Ideal para aprovechar el verano al máximo.</div>
-        <div class="mod-price"><sup>€</sup>199,95 <small>/ pack 4 semanas</small></div>
-        <ul class="mod-features">
-          <li>3 sesiones de 2h por semana</li>
-          <li>Proyecto final real</li>
-          <li>Material y recursos incluidos</li>
-          <li>Seguimiento personalizado</li>
-          <li>Certificado de finalización</li>
-        </ul>
-        <a href="intensivo.html" class="mod-cta">Ver plan intensivo →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- CURRICULUM -->
-<section class="curriculum-section" id="temario">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-tag">// temario</div>
-      <h2 class="section-title">Para todos los niveles</h2>
-      <p class="section-sub">Desde los fundamentos del lenguaje hasta patrones avanzados, arquitectura limpia y preparación para entrevistas.</p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn btn-fill">
+        Reservar plaza <span class="btn-arrow">→</span>
+      </a>
+      <a href="#temario" class="btn btn-outline">
+        Ver el temario
+      </a>
     </div>
 
-    <div class="curr-grid">
-      <div class="curr-card reveal reveal-delay-1">
-        <span class="curr-level lv-basic">Básico</span>
-        <div class="curr-title">Fundamentos de Java</div>
-        <div class="curr-topics">Tipos primitivos · Control de flujo · Arrays · Strings · Métodos</div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Niveles</div>
       </div>
-      <div class="curr-card reveal reveal-delay-2">
-        <span class="curr-level lv-basic">Básico</span>
-        <div class="curr-title">Orientación a objetos</div>
-        <div class="curr-topics">Clases · Objetos · Herencia · Polimorfismo · Encapsulación · Interfaces</div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Modalidades</div>
       </div>
-      <div class="curr-card reveal reveal-delay-1">
-        <span class="curr-level lv-inter">Intermedio</span>
-        <div class="curr-title">Colecciones y Generics</div>
-        <div class="curr-topics">List · Set · Map · Wildcards · Clases genéricas · Bounded types</div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Módulos</div>
       </div>
-      <div class="curr-card reveal reveal-delay-2">
-        <span class="curr-level lv-inter">Intermedio</span>
-        <div class="curr-title">SOLID y Clean Code</div>
-        <div class="curr-topics">SRP · OCP · LSP · ISP · DIP · Refactoring · Code smells · Naming</div>
-      </div>
-      <div class="curr-card reveal reveal-delay-1">
-        <span class="curr-level lv-avanz">Avanzado</span>
-        <div class="curr-title">Java funcional</div>
-        <div class="curr-topics">Lambdas · Stream API · Interfaces funcionales · Optional · Method references</div>
-      </div>
-      <div class="curr-card reveal reveal-delay-2">
-        <span class="curr-level lv-avanz">Avanzado</span>
-        <div class="curr-title">Testing con JUnit 5</div>
-        <div class="curr-topics">TDD · JUnit 5 · Mockito · AssertJ · Test doubles · Coverage</div>
-      </div>
-      <div class="curr-card reveal reveal-delay-1">
-        <span class="curr-level lv-expert">Experto</span>
-        <div class="curr-title">Patrones de diseño</div>
-        <div class="curr-topics">Factory · Strategy · Observer · Builder · Decorator · Singleton y más</div>
-      </div>
-      <div class="curr-card reveal reveal-delay-2">
-        <span class="curr-level lv-expert">Experto</span>
-        <div class="curr-title">Algoritmos y estructuras</div>
-        <div class="curr-topics">Big O · Sorting · Búsqueda · Árboles · Grafos · Dynamic Programming</div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Práctico</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <div class="divider"></div>
 
-<!-- INTENSIVO TIMELINE -->
-<section class="intensivo-section" id="intensivo">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-tag">// plan intensivo</div>
-      <h2 class="section-title">Ruta de 4 semanas</h2>
-      <p class="section-sub">El plan de intensivo completo para pasar de Java básico a intermedio-avanzado en un mes.</p>
-    </div>
-
-    <div class="timeline">
-      <div class="tl-item reveal">
-        <div class="tl-dot">01</div>
-        <div class="tl-body">
-          <div class="tl-week">Semana 1</div>
-          <div class="tl-title">Consolidación de fundamentos y POO</div>
-          <div class="tl-desc">Tipos, colecciones, herencia, polimorfismo e interfaces. Primer proyecto: mini app de consola funcional.</div>
-        </div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-dot">02</div>
-        <div class="tl-body">
-          <div class="tl-week">Semana 2</div>
-          <div class="tl-title">Java moderno: funcional y Streams</div>
-          <div class="tl-desc">Lambdas, Stream API, Optional e interfaces funcionales con casos prácticos reales de negocio.</div>
-        </div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-dot">03</div>
-        <div class="tl-body">
-          <div class="tl-week">Semana 3</div>
-          <div class="tl-title">Patrones de diseño y SOLID</div>
-          <div class="tl-desc">Los 10 patrones más usados en el mundo real + principios SOLID aplicados con refactoring de código existente.</div>
-        </div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-dot">04</div>
-        <div class="tl-body">
-          <div class="tl-week">Semana 4</div>
-          <div class="tl-title">Proyecto final + Testing</div>
-          <div class="tl-desc">Proyecto real con arquitectura limpia, TDD, Mockito y revisión de código profesional. Resultado: algo que puedes poner en GitHub.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- SOBRE MÍ -->
-<section class="about-section" id="sobre-mi">
-  <div class="container">
-    <div class="about-grid">
+  <!-- MODALIDADES -->
+  <section class="modalities-section" id="modalidades">
+    <div class="container">
       <div class="reveal">
-        <div class="about-avatar">
-          <div class="avatar-initials">PS</div>
-          <div class="avatar-label">Java Developer</div>
-        </div>
+        <div class="section-tag">// modalidades</div>
+        <h2 class="section-title">¿Cómo quieres aprender?</h2>
+        <p class="section-sub">Elige la modalidad que mejor se adapta a tu ritmo, objetivos y disponibilidad.</p>
       </div>
-      <div class="reveal reveal-delay-1">
-        <div class="section-tag">// sobre mí</div>
-        <h2>Enseño Java<br>como quien<br>acaba de aprenderlo.</h2>
-        <p>Soy desarrollador Java con experiencia real en proyectos de producción. Domino el lenguaje en profundidad: desde la JVM hasta patrones de diseño, algoritmos y arquitectura limpia.</p>
-        <p>Mi ventaja como profesor es que todavía recuerdo exactamente los puntos donde uno se atasca. No doy por sentado nada, explico cada decisión y trabajo siempre con código real.</p>
-        <div class="skills-chips">
-          <span class="skill-chip">Java SE</span>
-          <span class="skill-chip">Stream API</span>
-          <span class="skill-chip">Patrones GoF</span>
-          <span class="skill-chip">SOLID</span>
-          <span class="skill-chip">Clean Code</span>
-          <span class="skill-chip">JUnit 5</span>
-          <span class="skill-chip">Mockito</span>
-          <span class="skill-chip">Algoritmos</span>
-          <span class="skill-chip">TDD</span>
-          <span class="skill-chip">Git</span>
+
+      <div class="modalities-grid">
+        <div class="mod-card reveal reveal-delay-1">
+          <div class="mod-icon">👤</div>
+          <div class="mod-name">Clase particular</div>
+          <div class="mod-desc">Atención 100% personalizada. Avanzamos a tu ritmo, trabajamos con tu código real y
+            resolvemos tus dudas concretas.</div>
+          <div class="mod-price"><sup>€</sup>25 <small>/ hora</small></div>
+          <ul class="mod-features">
+            <li>Horario totalmente flexible</li>
+            <li>Temario adaptado a ti</li>
+            <li>Online o presencial (Madrid)</li>
+            <li>Revisión de tu propio código</li>
+            <li>Primera sesión de prueba gratis</li>
+          </ul>
+          <a href="https://wa.me/34674372040?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20clase%20particular%20de%20Java."
+            class="mod-cta" target="_blank" rel="noopener">Reservar clase →</a>
+        </div>
+
+        <div class="mod-card featured reveal reveal-delay-2">
+          <div class="mod-badge">★ Más popular</div>
+          <div class="mod-icon">👥</div>
+          <div class="mod-name">Clase colectiva</div>
+          <div class="mod-desc">Grupos reducidos de 2 a 4 personas. Más económico, dinámico y con la energía de aprender
+            en compañía.</div>
+          <div class="mod-price"><sup>€</sup>15 <small>/ hora por persona</small></div>
+          <ul class="mod-features">
+            <li>Grupos de 2 a 4 alumnos</li>
+            <li>Dinámica colaborativa y retos</li>
+            <li>Sesiones de 2h mínimo</li>
+            <li>Precio accesible sin perder calidad</li>
+            <li>Primera sesión de prueba gratis</li>
+          </ul>
+          <a href="https://wa.me/34674372040?text=Hola%2C%20me%20gustar%C3%ADa%20unirme%20a%20una%20clase%20colectiva%20de%20Java."
+            class="mod-cta" target="_blank" rel="noopener">Unirse al grupo →</a>
+        </div>
+
+        <div class="mod-card reveal reveal-delay-3">
+          <div class="mod-icon">🚀</div>
+          <div class="mod-name">Intensivo de verano</div>
+          <div class="mod-desc">Un plan estructurado de 4 semanas para subir de nivel de forma acelerada. Ideal para
+            aprovechar el verano al máximo.</div>
+          <div class="mod-price"><sup>€</sup>199 <small>/ pack 4 semanas</small></div>
+          <ul class="mod-features">
+            <li>3 sesiones de 2h por semana</li>
+            <li>Proyecto final real</li>
+            <li>Material y recursos incluidos</li>
+            <li>Seguimiento personalizado</li>
+            <li>Certificado de finalización</li>
+          </ul>
+          <a href="intensivo.html" class="mod-cta">Ver plan intensivo →</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <div class="divider"></div>
 
-<!-- FAQ -->
-<section class="faq-section">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-tag">// preguntas frecuentes</div>
-      <h2 class="section-title">Resolvemos tus dudas</h2>
+  <!-- CURRICULUM -->
+  <section class="curriculum-section" id="temario">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-tag">// temario</div>
+        <h2 class="section-title">Para todos los niveles</h2>
+        <p class="section-sub">Desde los fundamentos del lenguaje hasta patrones avanzados, arquitectura limpia y
+          preparación para entrevistas.</p>
+      </div>
+
+      <div class="curr-grid">
+        <div class="curr-card reveal reveal-delay-1">
+          <span class="curr-level lv-basic">Básico</span>
+          <div class="curr-title">Fundamentos de Java</div>
+          <div class="curr-topics">Tipos primitivos · Control de flujo · Arrays · Strings · Métodos</div>
+        </div>
+        <div class="curr-card reveal reveal-delay-2">
+          <span class="curr-level lv-basic">Básico</span>
+          <div class="curr-title">Orientación a objetos</div>
+          <div class="curr-topics">Clases · Objetos · Herencia · Polimorfismo · Encapsulación · Interfaces</div>
+        </div>
+        <div class="curr-card reveal reveal-delay-1">
+          <span class="curr-level lv-inter">Intermedio</span>
+          <div class="curr-title">Colecciones y Generics</div>
+          <div class="curr-topics">List · Set · Map · Wildcards · Clases genéricas · Bounded types</div>
+        </div>
+        <div class="curr-card reveal reveal-delay-2">
+          <span class="curr-level lv-inter">Intermedio</span>
+          <div class="curr-title">SOLID y Clean Code</div>
+          <div class="curr-topics">SRP · OCP · LSP · ISP · DIP · Refactoring · Code smells · Naming</div>
+        </div>
+        <div class="curr-card reveal reveal-delay-1">
+          <span class="curr-level lv-avanz">Avanzado</span>
+          <div class="curr-title">Java funcional</div>
+          <div class="curr-topics">Lambdas · Stream API · Interfaces funcionales · Optional · Method references</div>
+        </div>
+        <div class="curr-card reveal reveal-delay-2">
+          <span class="curr-level lv-avanz">Avanzado</span>
+          <div class="curr-title">Testing con JUnit 5</div>
+          <div class="curr-topics">TDD · JUnit 5 · Mockito · AssertJ · Test doubles · Coverage</div>
+        </div>
+        <div class="curr-card reveal reveal-delay-1">
+          <span class="curr-level lv-expert">Experto</span>
+          <div class="curr-title">Patrones de diseño</div>
+          <div class="curr-topics">Factory · Strategy · Observer · Builder · Decorator · Singleton y más</div>
+        </div>
+        <div class="curr-card reveal reveal-delay-2">
+          <span class="curr-level lv-expert">Experto</span>
+          <div class="curr-title">Algoritmos y estructuras</div>
+          <div class="curr-topics">Big O · Sorting · Búsqueda · Árboles · Grafos · Dynamic Programming</div>
+        </div>
+      </div>
     </div>
-    <div class="faq-list reveal reveal-delay-1">
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Necesito experiencia previa en programación?</span>
-          <div class="faq-icon">+</div>
-        </div>
-        <div class="faq-a">No es necesario. El módulo básico parte de cero: ni siquiera necesitas saber qué es una variable. Solo necesitas ganas y un ordenador con Java instalado (te ayudo con la configuración en la primera sesión gratis).</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- INTENSIVO TIMELINE -->
+  <section class="intensivo-section" id="intensivo">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-tag">// plan intensivo</div>
+        <h2 class="section-title">Ruta de 4 semanas</h2>
+        <p class="section-sub">El plan de intensivo completo para pasar de Java básico a intermedio-avanzado en un mes.
+        </p>
       </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Las clases son presenciales u online?</span>
-          <div class="faq-icon">+</div>
+
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-dot">01</div>
+          <div class="tl-body">
+            <div class="tl-week">Semana 1</div>
+            <div class="tl-title">Consolidación de fundamentos y POO</div>
+            <div class="tl-desc">Tipos, colecciones, herencia, polimorfismo e interfaces. Primer proyecto: mini app de
+              consola funcional.</div>
+          </div>
         </div>
-        <div class="faq-a">Ambas opciones disponibles. Las clases online se imparten por videollamada con pantalla compartida (Google Meet o Discord). Las presenciales están disponibles en Madrid. Tú eliges según tu preferencia.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Cómo funciona la primera sesión gratuita?</span>
-          <div class="faq-icon">+</div>
+        <div class="tl-item reveal">
+          <div class="tl-dot">02</div>
+          <div class="tl-body">
+            <div class="tl-week">Semana 2</div>
+            <div class="tl-title">Java moderno: funcional y Streams</div>
+            <div class="tl-desc">Lambdas, Stream API, Optional e interfaces funcionales con casos prácticos reales de
+              negocio.</div>
+          </div>
         </div>
-        <div class="faq-a">Es una sesión de 45-60 minutos sin coste ni compromiso. La usamos para evaluar tu nivel, entender qué quieres conseguir y ver si hay buena sintonía. Si decides continuar, acordamos el plan y el horario.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Cómo se realizan los pagos?</span>
-          <div class="faq-icon">+</div>
+        <div class="tl-item reveal">
+          <div class="tl-dot">03</div>
+          <div class="tl-body">
+            <div class="tl-week">Semana 3</div>
+            <div class="tl-title">Patrones de diseño y SOLID</div>
+            <div class="tl-desc">Los 10 patrones más usados en el mundo real + principios SOLID aplicados con
+              refactoring de código existente.</div>
+          </div>
         </div>
-        <div class="faq-a">Puedes pagar por sesión o en pack cerrado. Aceptamos Bizum y transferencia bancaria. Los packs intensivos se pagan por adelantado con un pequeño descuento respecto al precio por hora.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-text">¿Puedo elegir el temario que me interesa?</span>
-          <div class="faq-icon">+</div>
+        <div class="tl-item reveal">
+          <div class="tl-dot">04</div>
+          <div class="tl-body">
+            <div class="tl-week">Semana 4</div>
+            <div class="tl-title">Proyecto final + Testing</div>
+            <div class="tl-desc">Proyecto real con arquitectura limpia, TDD, Mockito y revisión de código profesional.
+              Resultado: algo que puedes poner en GitHub.</div>
+          </div>
         </div>
-        <div class="faq-a">Completamente. En las clases particulares el temario es 100% tuyo. Si solo te interesan los patrones de diseño o quieres preparar una entrevista técnica, diseñamos el plan en torno a eso.</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <div class="divider"></div>
 
-<!-- CTA FINAL -->
-<section class="cta-section" id="contacto">
-  <div class="container">
-    <div class="reveal">
-      <h2>¿Empezamos<br>este verano?</h2>
-      <p>Plazas limitadas · Primeras sesiones disponibles desde julio · Primera sesión gratis</p>
+  <!-- SOBRE MÍ -->
+  <section class="about-section" id="sobre-mi">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <div class="about-avatar">
+            <div class="avatar-initials">PS</div>
+            <div class="avatar-label">Java Developer</div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div class="section-tag">// sobre mí</div>
+          <h2>Enseño Java<br>como quien<br>acaba de aprenderlo.</h2>
+          <p>Soy desarrollador Java con experiencia real en proyectos de producción. Domino el lenguaje en profundidad:
+            desde la JVM hasta patrones de diseño, algoritmos y arquitectura limpia.</p>
+          <p>Mi ventaja como profesor es que todavía recuerdo exactamente los puntos donde uno se atasca. No doy por
+            sentado nada, explico cada decisión y trabajo siempre con código real.</p>
+          <div class="skills-chips">
+            <span class="skill-chip">Java SE</span>
+            <span class="skill-chip">Stream API</span>
+            <span class="skill-chip">Patrones GoF</span>
+            <span class="skill-chip">SOLID</span>
+            <span class="skill-chip">Clean Code</span>
+            <span class="skill-chip">JUnit 5</span>
+            <span class="skill-chip">Mockito</span>
+            <span class="skill-chip">Algoritmos</span>
+            <span class="skill-chip">TDD</span>
+            <span class="skill-chip">Git</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <!-- Contact Form -->
-      <div class="contact-form-wrap reveal reveal-delay-1">
-        <div class="contact-form-title">Cuéntame qué necesitas</div>
-        <div class="contact-form-sub">Rellena el formulario y te contacto en menos de 24 h. Puedes enviármelo por WhatsApp o por email.</div>
-        <form id="contactForm" onsubmit="return false;">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="cf-nombre">Nombre</label>
-              <input type="text" id="cf-nombre" placeholder="Tu nombre" required autocomplete="given-name">
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-tag">// preguntas frecuentes</div>
+        <h2 class="section-title">Resolvemos tus dudas</h2>
+      </div>
+      <div class="faq-list reveal reveal-delay-1">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">¿Necesito experiencia previa en programación?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a">No es necesario. El módulo básico parte de cero: ni siquiera necesitas saber qué es una
+            variable. Solo necesitas ganas y un ordenador con Java instalado (te ayudo con la configuración en la
+            primera sesión gratis).</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">¿Las clases son presenciales u online?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a">Ambas opciones disponibles. Las clases online se imparten por videollamada con pantalla
+            compartida (Google Meet o Discord). Las presenciales están disponibles en Madrid. Tú eliges según tu
+            preferencia.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">¿Cómo funciona la primera sesión gratuita?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a">Es una sesión de 45-60 minutos sin coste ni compromiso. La usamos para evaluar tu nivel,
+            entender qué quieres conseguir y ver si hay buena sintonía. Si decides continuar, acordamos el plan y el
+            horario.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">¿Cómo se realizan los pagos?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a">Puedes pagar por sesión o en pack cerrado. Aceptamos Bizum y transferencia bancaria. Los
+            packs intensivos se pagan por adelantado con un pequeño descuento respecto al precio por hora.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">¿Puedo elegir el temario que me interesa?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a">Completamente. En las clases particulares el temario es 100% tuyo. Si solo te interesan los
+            patrones de diseño o quieres preparar una entrevista técnica, diseñamos el plan en torno a eso.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <div class="reveal">
+        <h2>¿Empezamos<br>este verano?</h2>
+        <p>Plazas limitadas · Primeras sesiones disponibles desde julio · Primera sesión gratis</p>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrap reveal reveal-delay-1">
+          <div class="contact-form-title">Cuéntame qué necesitas</div>
+          <div class="contact-form-sub">Rellena el formulario y te contacto en menos de 24 h. Puedes enviármelo por
+            WhatsApp o por email.</div>
+          <form id="contactForm" onsubmit="return false;">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cf-nombre">Nombre</label>
+                <input type="text" id="cf-nombre" placeholder="Tu nombre" required autocomplete="given-name">
+              </div>
+              <div class="form-group">
+                <label for="cf-apellidos">Apellidos</label>
+                <input type="text" id="cf-apellidos" placeholder="Tus apellidos" autocomplete="family-name">
+              </div>
             </div>
             <div class="form-group">
-              <label for="cf-apellidos">Apellidos</label>
-              <input type="text" id="cf-apellidos" placeholder="Tus apellidos" autocomplete="family-name">
+              <label for="cf-contacto">Teléfono o email</label>
+              <input type="text" id="cf-contacto" placeholder="+34 600 000 000 / tu@email.com" required
+                autocomplete="email">
             </div>
-          </div>
-          <div class="form-group">
-            <label for="cf-contacto">Teléfono o email</label>
-            <input type="text" id="cf-contacto" placeholder="+34 600 000 000 / tu@email.com" required autocomplete="email">
-          </div>
-          <div class="form-group">
-            <label for="cf-mensaje">Mensaje</label>
-            <textarea id="cf-mensaje" placeholder="¿Qué nivel tienes? ¿Qué quieres aprender? ¿Prefieres online o presencial?..."></textarea>
-          </div>
-          <div class="form-actions">
-            <button type="button" id="btnWhatsapp" class="form-btn form-btn-wa" onclick="enviarWhatsapp()">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Enviar por WhatsApp
-            </button>
-          </div>
-          <div class="form-note">📌 Al pulsar se abrirá WhatsApp con tu mensaje ya redactado. ¿Prefieres el email? Escríbeme a <a href="mailto:summer@primeofstudio.com" style="color:var(--accent2); text-decoration:none;">summer@primeofstudio.com</a> y te respondo en menos de 24 h.</div>
-        </form>
+            <div class="form-group">
+              <label for="cf-mensaje">Mensaje</label>
+              <textarea id="cf-mensaje"
+                placeholder="¿Qué nivel tienes? ¿Qué quieres aprender? ¿Prefieres online o presencial?..."></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="button" id="btnWhatsapp" class="form-btn form-btn-wa" onclick="enviarWhatsapp()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                Enviar por WhatsApp
+              </button>
+            </div>
+            <div class="form-note">📌 Al pulsar se abrirá WhatsApp con tu mensaje ya redactado. ¿Prefieres el email?
+              Escríbeme a <a href="mailto:summer@primeofstudio.com"
+                style="color:var(--accent2); text-decoration:none;">summer@primeofstudio.com</a> y te respondo en menos
+              de 24 h.</div>
+          </form>
+        </div>
+
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <a href="#inicio" class="footer-logo">prime<span>.</span>of<span>studio</span></a>
-  <p>© 2025 · Clases de Java · Madrid</p>
-  <p>Hecho con ☕ y mucho Java</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <a href="#inicio" class="footer-logo">prime<span>.</span>of<span>studio</span></a>
+    <p>© 2025 · Clases de Java · Madrid</p>
+    <p>Hecho con ☕ y mucho Java</p>
+  </footer>
 
-<script>
-  /* ── Custom cursor ── */
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
+  <script>
+    /* ── Custom cursor ── */
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top = my + 'px';
-  });
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
 
-  (function animateRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(animateRing);
-  })();
+    (function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    })();
 
-  document.querySelectorAll('a, button, .mod-card, .curr-card, .faq-q, .skill-chip').forEach(el => {
-    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
-  });
+    document.querySelectorAll('a, button, .mod-card, .curr-card, .faq-q, .skill-chip').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+    });
 
-  /* ── Nav scroll ── */
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
+    /* ── Nav scroll ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
 
-  /* ── Scroll reveal ── */
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    /* ── Scroll reveal ── */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  /* ── FAQ ── */
-  function toggleFaq(btn) {
-    const item = btn.parentElement;
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
-
-  /* ── Contact Form ── */
-  function getFormData() {
-    const nombre = document.getElementById('cf-nombre').value.trim();
-    const apellidos = document.getElementById('cf-apellidos').value.trim();
-    const contacto = document.getElementById('cf-contacto').value.trim();
-    const mensaje = document.getElementById('cf-mensaje').value.trim();
-    return { nombre, apellidos, contacto, mensaje };
-  }
-
-  function buildMessage({ nombre, apellidos, contacto, mensaje }) {
-    let msg = `Hola, me gustaría información sobre las clases de Java.\n\n`;
-    if (nombre) msg += `*Nombre:* ${nombre}${apellidos ? ' ' + apellidos : ''}\n`;
-    if (contacto) msg += `*Contacto:* ${contacto}\n`;
-    if (mensaje) msg += `*Mensaje:* ${mensaje}`;
-    return msg;
-  }
-
-  function enviarWhatsapp() {
-    const data = getFormData();
-    if (!data.nombre || !data.contacto) {
-      alert('Por favor, rellena al menos tu nombre y teléfono/email.');
-      return;
+    /* ── FAQ ── */
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
     }
-    const msg = buildMessage(data);
-    const url = `https://wa.me/34674372040?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
-  }
-</script>
+
+    /* ── Contact Form ── */
+    function getFormData() {
+      const nombre = document.getElementById('cf-nombre').value.trim();
+      const apellidos = document.getElementById('cf-apellidos').value.trim();
+      const contacto = document.getElementById('cf-contacto').value.trim();
+      const mensaje = document.getElementById('cf-mensaje').value.trim();
+      return { nombre, apellidos, contacto, mensaje };
+    }
+
+    function buildMessage({ nombre, apellidos, contacto, mensaje }) {
+      let msg = `Hola, me gustaría información sobre las clases de Java.\n\n`;
+      if (nombre) msg += `*Nombre:* ${nombre}${apellidos ? ' ' + apellidos : ''}\n`;
+      if (contacto) msg += `*Contacto:* ${contacto}\n`;
+      if (mensaje) msg += `*Mensaje:* ${mensaje}`;
+      return msg;
+    }
+
+    function enviarWhatsapp() {
+      const data = getFormData();
+      if (!data.nombre || !data.contacto) {
+        alert('Por favor, rellena al menos tu nombre y teléfono/email.');
+        return;
+      }
+      const msg = buildMessage(data);
+      const url = `https://wa.me/34674372040?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    }
+  </script>
 </body>
+
 </html>
