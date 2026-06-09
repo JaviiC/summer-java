@@ -404,6 +404,7 @@
     background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(249,115,22,0.06) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.3s;
+    pointer-events: none;
   }
   .mod-card:hover {
     border-color: var(--accent-border);
@@ -1172,7 +1173,7 @@ interface JavaDev {
           <li>Seguimiento personalizado</li>
           <li>Certificado de finalización</li>
         </ul>
-        <a href="/intensivo" class="mod-cta">Ver plan intensivo →</a>
+        <a href="intensivo.html" class="mod-cta">Ver plan intensivo →</a>
       </div>
     </div>
   </div>
@@ -1206,24 +1207,24 @@ interface JavaDev {
         <div class="curr-topics">List · Set · Map · Wildcards · Clases genéricas · Bounded types</div>
       </div>
       <div class="curr-card reveal reveal-delay-2">
-        <span class="curr-level lv-avanz">Avanzado</span>
-        <div class="curr-title">Java funcional</div>
-        <div class="curr-topics">Lambdas · Stream API · Interfaces funcionales · Optional · Method references</div>
-      </div>
-      <div class="curr-card reveal reveal-delay-1">
-        <span class="curr-level lv-expert">Experto</span>
-        <div class="curr-title">Patrones de diseño</div>
-        <div class="curr-topics">Factory · Strategy · Observer · Builder · Decorator · Singleton y más</div>
-      </div>
-      <div class="curr-card reveal reveal-delay-2">
         <span class="curr-level lv-inter">Intermedio</span>
         <div class="curr-title">SOLID y Clean Code</div>
         <div class="curr-topics">SRP · OCP · LSP · ISP · DIP · Refactoring · Code smells · Naming</div>
       </div>
       <div class="curr-card reveal reveal-delay-1">
         <span class="curr-level lv-avanz">Avanzado</span>
+        <div class="curr-title">Java funcional</div>
+        <div class="curr-topics">Lambdas · Stream API · Interfaces funcionales · Optional · Method references</div>
+      </div>
+      <div class="curr-card reveal reveal-delay-2">
+        <span class="curr-level lv-avanz">Avanzado</span>
         <div class="curr-title">Testing con JUnit 5</div>
         <div class="curr-topics">TDD · JUnit 5 · Mockito · AssertJ · Test doubles · Coverage</div>
+      </div>
+      <div class="curr-card reveal reveal-delay-1">
+        <span class="curr-level lv-expert">Experto</span>
+        <div class="curr-title">Patrones de diseño</div>
+        <div class="curr-topics">Factory · Strategy · Observer · Builder · Decorator · Singleton y más</div>
       </div>
       <div class="curr-card reveal reveal-delay-2">
         <span class="curr-level lv-expert">Experto</span>
