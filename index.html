@@ -183,12 +183,31 @@
     }
 
     @keyframes btnWiggle {
-      0%, 90% { transform: rotate(0) scale(1); }
-      92% { transform: rotate(-2deg) scale(1.02); }
-      94% { transform: rotate(2deg) scale(1.02); }
-      96% { transform: rotate(-2deg) scale(1.02); }
-      98% { transform: rotate(2deg) scale(1.02); }
-      100% { transform: rotate(0) scale(1); }
+
+      0%,
+      90% {
+        transform: rotate(0) scale(1);
+      }
+
+      92% {
+        transform: rotate(-2deg) scale(1.02);
+      }
+
+      94% {
+        transform: rotate(2deg) scale(1.02);
+      }
+
+      96% {
+        transform: rotate(-2deg) scale(1.02);
+      }
+
+      98% {
+        transform: rotate(2deg) scale(1.02);
+      }
+
+      100% {
+        transform: rotate(0) scale(1);
+      }
     }
 
     .nav-preview-btn:hover {
@@ -2006,7 +2025,7 @@
         <div class="curr-card reveal reveal-delay-1">
           <span class="curr-level lv-expert">Experto</span>
           <div class="curr-title">Arquitectura de Software</div>
-          <div class="curr-topics">Arquitectura por capas · MVC · Arquitectura Hexagonal · Microservicios</div>
+          <div class="curr-topics">MVC · Arquitectura Hexagonal · Microservicios</div>
         </div>
         <div class="curr-card reveal reveal-delay-2">
           <span class="curr-level lv-project">Proyecto</span>
