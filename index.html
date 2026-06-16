@@ -179,6 +179,16 @@
       border: 1px solid var(--border2);
       border-radius: var(--radius-sm);
       transition: color 0.2s, border-color 0.2s, background 0.2s;
+      animation: btnWiggle 8s infinite;
+    }
+
+    @keyframes btnWiggle {
+      0%, 90% { transform: rotate(0) scale(1); }
+      92% { transform: rotate(-2deg) scale(1.02); }
+      94% { transform: rotate(2deg) scale(1.02); }
+      96% { transform: rotate(-2deg) scale(1.02); }
+      98% { transform: rotate(2deg) scale(1.02); }
+      100% { transform: rotate(0) scale(1); }
     }
 
     .nav-preview-btn:hover {
