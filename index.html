@@ -589,6 +589,38 @@
       font-weight: 400;
     }
 
+    .mod-price-wrap {
+      margin-bottom: 1.5rem;
+    }
+
+    .mod-price-wrap .mod-price {
+      margin-bottom: 0.35rem;
+    }
+
+    .price-old {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text3);
+      text-decoration: line-through;
+      text-decoration-color: rgba(248, 113, 113, 0.6);
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .price-badge {
+      display: inline-block;
+      background: rgba(74, 222, 128, 0.12);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      color: var(--green);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 100px;
+      letter-spacing: 0.06em;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
     .mod-features {
       list-style: none;
       display: flex;
@@ -648,6 +680,151 @@
 
     .mod-card.featured .mod-cta:hover {
       background: var(--accent2);
+    }
+
+    /* ─── PREVIEW GRATUITO ─── */
+    .preview-section {
+      background: var(--bg);
+      padding: 4rem 2rem;
+    }
+
+    .preview-banner {
+      max-width: 860px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.07) 0%, rgba(96, 165, 250, 0.05) 100%);
+      border: 1px solid var(--accent-border);
+      border-radius: var(--radius);
+      padding: 3rem 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2.5rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preview-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--blue));
+    }
+
+    .preview-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.6rem;
+    }
+
+    .preview-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .preview-desc {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+    }
+
+    .preview-items {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .preview-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text2);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+    }
+
+    .preview-item-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .preview-cta-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      text-align: center;
+      min-width: 180px;
+    }
+
+    .preview-free-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--green);
+      background: rgba(74, 222, 128, 0.1);
+      border: 1px solid rgba(74, 222, 128, 0.2);
+      padding: 4px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.06em;
+    }
+
+    .preview-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: #0d1220;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 13px 24px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+
+    .preview-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(255,255,255,0.15);
+    }
+
+    .preview-note {
+      font-size: 0.72rem;
+      color: var(--text3);
+      font-family: 'DM Mono', monospace;
+    }
+
+    @media (max-width: 768px) {
+      .preview-banner {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.75rem;
+        text-align: center;
+      }
+      .preview-items {
+        justify-content: center;
+      }
+      .preview-cta-col {
+        width: 100%;
+      }
     }
 
     /* ─── CURRICULUM ─── */
@@ -1412,7 +1589,10 @@
           <div class="mod-name">Clase particular</div>
           <div class="mod-desc">Atención 100% personalizada. Avanzamos a tu ritmo, trabajamos con tu código real y
             resolvemos tus dudas concretas.</div>
-          <div class="mod-price"><sup>€</sup>25 <small>/ hora</small></div>
+          <div class="mod-price-wrap">
+            <span class="price-old">€30 / hora</span>
+            <div class="mod-price"><sup>€</sup>25 <small>/ hora</small><span class="price-badge">Oferta verano</span></div>
+          </div>
           <ul class="mod-features">
             <li>Horario totalmente flexible</li>
             <li>Temario adaptado a ti</li>
@@ -1427,18 +1607,18 @@
         <div class="mod-card reveal reveal-delay-2">
           <div class="mod-icon">👥</div>
           <div class="mod-name">Clase colectiva</div>
-          <div class="mod-desc">Grupos reducidos de 3 a 9 personas. Más económico, dinámico y con la energía de aprender
-            en compañía.</div>
-          <div class="mod-price"><sup>€</sup>18 <small>/ hora por persona</small></div>
+          <div class="mod-desc">Grupos reducidos por nivel. Aprende con personas en tu mismo punto, con dinámica colaborativa y retos compartidos. Solo online vía Teams.</div>
+          <div class="mod-price"><sup>€</sup>15 <small>/ hora por persona</small></div>
+          <div style="font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--text3); margin-top: -1rem; margin-bottom: 1.5rem;">Sesiones de 2h = €30/sesión · acceso exclusivo para alumnos</div>
           <ul class="mod-features">
-            <li>Grupos de 3 a 9 alumnos</li>
-            <li>Dinámica colaborativa y retos</li>
-            <li>Sesiones de 2h mínimo</li>
-            <li>Precio accesible sin perder calidad</li>
-            <li>Primera sesión de prueba gratis</li>
+            <li>Grupos separados por nivel: Básico, Intermedio, Avanzado</li>
+            <li>Sesiones de 2h · hasta 3 días por semana</li>
+            <li>Temario adaptado al nivel del grupo</li>
+            <li>Acceso vía Microsoft Teams (solo alumnos)</li>
+            <li>Lista de espera — te avisamos al abrir grupo</li>
           </ul>
-          <a href="https://chat.whatsapp.com/KUtrZOxwWfHJDEooqV2upi" class="mod-cta" target="_blank"
-            rel="noopener">Unirse al grupo →</a>
+          <a href="https://wa.me/34674372040?text=Hola%2C%20quiero%20apuntarme%20a%20la%20lista%20de%20espera%20de%20clases%20colectivas%20de%20Java." class="mod-cta" target="_blank"
+            rel="noopener">Apuntarse a la lista →</a>
         </div>
 
         <div class="mod-card reveal reveal-delay-3">
@@ -1446,7 +1626,10 @@
           <div class="mod-name">Intensivo de verano</div>
           <div class="mod-desc">Un plan estructurado de 4 semanas para subir de nivel de forma acelerada. Ideal para
             aprovechar el verano al máximo.</div>
-          <div class="mod-price"><sup>€</sup>199 <small>/ pack 4 semanas</small></div>
+          <div class="mod-price-wrap">
+            <span class="price-old">€249 / pack 4 semanas</span>
+            <div class="mod-price"><sup>€</sup>199 <small>/ pack 4 semanas</small><span class="price-badge">Ahorra €50</span></div>
+          </div>
           <ul class="mod-features">
             <li>3 sesiones de 2h por semana</li>
             <li>Proyecto final real</li>
@@ -1456,6 +1639,35 @@
           </ul>
           <a href="intensivo.html" class="mod-cta">Ver plan intensivo →</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PREVIEW GRATUITO -->
+  <section class="preview-section" id="preview">
+    <div class="preview-banner reveal">
+      <div class="preview-content">
+        <div class="preview-eyebrow">📥 Prueba gratuita</div>
+        <div class="preview-title">Descarga un adelanto — sin compromiso</div>
+        <p class="preview-desc">
+          Antes de apuntarte, comprueba tú mismo el nivel y el estilo. Incluye una lección
+          de muestra del temario (incompleta) y un reto real de código Java con pistas —
+          exactamente como trabajamos en clase.
+        </p>
+        <div class="preview-items">
+          <div class="preview-item"><span class="preview-item-dot"></span>PDF de lección de muestra</div>
+          <div class="preview-item"><span class="preview-item-dot"></span>Mini-reto con pistas</div>
+          <div class="preview-item"><span class="preview-item-dot"></span>Sin registro · descarga directa</div>
+        </div>
+      </div>
+      <div class="preview-cta-col">
+        <span class="preview-free-badge">100% gratuito</span>
+        <a href="#" class="preview-btn" target="_blank" rel="noopener">
+          ↓ Descargar preview
+        </a>
+        <span class="preview-note">PDF · ~2 páginas + reto</span>
       </div>
     </div>
   </section>
