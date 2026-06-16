@@ -670,8 +670,13 @@
     }
 
     @keyframes codeScroll {
-      0% { transform: rotate(-3deg) translateY(10%); }
-      100% { transform: rotate(-3deg) translateY(-60%); }
+      0% {
+        transform: rotate(-3deg) translateY(10%);
+      }
+
+      100% {
+        transform: rotate(-3deg) translateY(-60%);
+      }
     }
 
     .code-line {
@@ -685,21 +690,159 @@
       width: 0;
     }
 
-    .tl-1 { animation: typeCode1 18s steps(15, end) infinite; }
-    .tl-2 { animation: typeCode2 18s steps(38, end) infinite 1.5s; }
-    .tl-3 { animation: typeCode3 18s steps(58, end) infinite 3.5s; }
-    .tl-4 { animation: typeCode4 18s steps(47, end) infinite 6s; }
-    .tl-5 { animation: typeCode5 18s steps(22, end) infinite 8s; }
-    .tl-6 { animation: typeCode6 18s steps(73, end) infinite 9.5s; }
-    .tl-7 { animation: typeCode7 18s steps(66, end) infinite 12s; }
+    .tl-1 {
+      animation: typeCode1 18s steps(15, end) infinite;
+    }
 
-    @keyframes typeCode1 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 15ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
-    @keyframes typeCode2 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 38ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
-    @keyframes typeCode3 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 58ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
-    @keyframes typeCode4 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 47ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
-    @keyframes typeCode5 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 22ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
-    @keyframes typeCode6 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 73ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
-    @keyframes typeCode7 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 66ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
+    .tl-2 {
+      animation: typeCode2 18s steps(38, end) infinite 1.5s;
+    }
+
+    .tl-3 {
+      animation: typeCode3 18s steps(58, end) infinite 3.5s;
+    }
+
+    .tl-4 {
+      animation: typeCode4 18s steps(47, end) infinite 6s;
+    }
+
+    .tl-5 {
+      animation: typeCode5 18s steps(22, end) infinite 8s;
+    }
+
+    .tl-6 {
+      animation: typeCode6 18s steps(73, end) infinite 9.5s;
+    }
+
+    .tl-7 {
+      animation: typeCode7 18s steps(66, end) infinite 12s;
+    }
+
+    @keyframes typeCode1 {
+      0% {
+        width: 0;
+        border-color: rgba(96, 165, 250, 0.3);
+      }
+
+      8%,
+      92% {
+        width: 15ch;
+        border-color: transparent;
+      }
+
+      100% {
+        width: 0;
+        border-color: transparent;
+      }
+    }
+
+    @keyframes typeCode2 {
+      0% {
+        width: 0;
+        border-color: rgba(96, 165, 250, 0.3);
+      }
+
+      8%,
+      92% {
+        width: 38ch;
+        border-color: transparent;
+      }
+
+      100% {
+        width: 0;
+        border-color: transparent;
+      }
+    }
+
+    @keyframes typeCode3 {
+      0% {
+        width: 0;
+        border-color: rgba(96, 165, 250, 0.3);
+      }
+
+      8%,
+      92% {
+        width: 58ch;
+        border-color: transparent;
+      }
+
+      100% {
+        width: 0;
+        border-color: transparent;
+      }
+    }
+
+    @keyframes typeCode4 {
+      0% {
+        width: 0;
+        border-color: rgba(96, 165, 250, 0.3);
+      }
+
+      8%,
+      92% {
+        width: 47ch;
+        border-color: transparent;
+      }
+
+      100% {
+        width: 0;
+        border-color: transparent;
+      }
+    }
+
+    @keyframes typeCode5 {
+      0% {
+        width: 0;
+        border-color: rgba(96, 165, 250, 0.3);
+      }
+
+      8%,
+      92% {
+        width: 22ch;
+        border-color: transparent;
+      }
+
+      100% {
+        width: 0;
+        border-color: transparent;
+      }
+    }
+
+    @keyframes typeCode6 {
+      0% {
+        width: 0;
+        border-color: rgba(96, 165, 250, 0.3);
+      }
+
+      8%,
+      92% {
+        width: 73ch;
+        border-color: transparent;
+      }
+
+      100% {
+        width: 0;
+        border-color: transparent;
+      }
+    }
+
+    @keyframes typeCode7 {
+      0% {
+        width: 0;
+        border-color: rgba(96, 165, 250, 0.3);
+      }
+
+      8%,
+      92% {
+        width: 66ch;
+        border-color: transparent;
+      }
+
+      100% {
+        width: 0;
+        border-color: transparent;
+      }
+    }
 
     .preview-banner {
       position: relative;
@@ -745,7 +888,7 @@
       font-family: 'DM Mono', monospace;
       font-size: 0.75rem;
       color: var(--text2);
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border2);
       border-radius: var(--radius-sm);
       padding: 6px 12px;
@@ -797,7 +940,7 @@
 
     .preview-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(255,255,255,0.15);
+      box-shadow: 0 12px 32px rgba(255, 255, 255, 0.15);
     }
 
     .preview-note {
@@ -812,9 +955,11 @@
         padding: 2rem 1.75rem;
         text-align: center;
       }
+
       .preview-items {
         justify-content: center;
       }
+
       .preview-cta-col {
         width: 100%;
       }
@@ -1661,7 +1806,8 @@
         <div class="mod-card reveal reveal-delay-2">
           <div class="mod-icon">👥</div>
           <div class="mod-name">Clase colectiva</div>
-          <div class="mod-desc">Grupos reducidos entre 3 y 9 personas. Aprende con personas de tu nivel, con un temario sólido, dinámicas y retos compartidos.</div>
+          <div class="mod-desc">Grupos reducidos entre 3 y 9 personas. Aprende con personas de tu nivel, con un temario
+            sólido, dinámicas y retos compartidos.</div>
           <div class="mod-price"><sup>€</sup>15 <small>/ hora por persona</small></div>
 
           <ul class="mod-features">
@@ -1713,24 +1859,24 @@
       <div class="code-line">@RequiredArgsConstructor</div>
       <div class="code-line">public class CourseController {</div>
       <div class="code-line"><br></div>
-      <div class="code-line">    private final CourseService courseService;</div>
+      <div class="code-line"> private final CourseService courseService;</div>
       <div class="code-line"><br></div>
-      <div class="typewriter-line tl-5">    @GetMapping("/{id}")</div>
-      <div class="typewriter-line tl-6">    public ResponseEntity&lt;CourseDTO&gt; getCourse(@PathVariable Long id) {</div>
-      <div class="typewriter-line tl-7">        return ResponseEntity.ok(courseService.findById(id));</div>
-      <div class="code-line">    }</div>
+      <div class="typewriter-line tl-5"> @GetMapping("/{id}")</div>
+      <div class="typewriter-line tl-6"> public ResponseEntity&lt;CourseDTO&gt; getCourse(@PathVariable Long id) {</div>
+      <div class="typewriter-line tl-7"> return ResponseEntity.ok(courseService.findById(id));</div>
+      <div class="code-line"> }</div>
       <div class="code-line"><br></div>
-      <div class="code-line">    @PostMapping</div>
-      <div class="code-line">    public ResponseEntity&lt;CourseDTO&gt; createCourse(@RequestBody CourseDTO dto) {</div>
-      <div class="code-line">        CourseDTO created = courseService.save(dto);</div>
-      <div class="code-line">        return ResponseEntity.status(HttpStatus.CREATED).body(created);</div>
-      <div class="code-line">    }</div>
+      <div class="code-line"> @PostMapping</div>
+      <div class="code-line"> public ResponseEntity&lt;CourseDTO&gt; createCourse(@RequestBody CourseDTO dto) {</div>
+      <div class="code-line"> CourseDTO created = courseService.save(dto);</div>
+      <div class="code-line"> return ResponseEntity.status(HttpStatus.CREATED).body(created);</div>
+      <div class="code-line"> }</div>
       <div class="code-line"><br></div>
-      <div class="typewriter-line tl-3">    @PutMapping("/{id}/publish")</div>
-      <div class="typewriter-line tl-4">    public ResponseEntity&lt;Void&gt; publishCourse(@PathVariable Long id) {</div>
-      <div class="code-line">        courseService.publish(id);</div>
-      <div class="code-line">        return ResponseEntity.noContent().build();</div>
-      <div class="code-line">    }</div>
+      <div class="typewriter-line tl-3"> @PutMapping("/{id}/publish")</div>
+      <div class="typewriter-line tl-4"> public ResponseEntity&lt;Void&gt; publishCourse(@PathVariable Long id) {</div>
+      <div class="code-line"> courseService.publish(id);</div>
+      <div class="code-line"> return ResponseEntity.noContent().build();</div>
+      <div class="code-line"> }</div>
       <div class="code-line">}</div>
       <div class="code-line"><br></div>
       <div class="code-line">// Pattern: MVC Architecture</div>
@@ -1865,9 +2011,9 @@
           <div class="tl-dot">03</div>
           <div class="tl-body">
             <div class="tl-week">Semana 3</div>
-            <div class="tl-title">Patrones de diseño y SOLID</div>
-            <div class="tl-desc">Los 10 patrones más usados en el mundo real + principios SOLID aplicados con
-              refactoring de código existente.</div>
+            <div class="tl-title">Patrones de diseño, SOLID y Control de Versiones</div>
+            <div class="tl-desc">Los patrones más usados en el mundo real aplicados + principios SOLID y flujos con Git
+              aplicados.</div>
           </div>
         </div>
         <div class="tl-item reveal">
@@ -1897,27 +2043,29 @@
       <div class="about-grid">
         <div class="reveal">
           <div class="about-avatar">
-            <div class="avatar-initials">SD</div>
-            <div class="avatar-label">Java Developer</div>
+            <div class="avatar-initials">JC</div>
+            <div class="avatar-label">Software Engineer</div>
           </div>
         </div>
         <div class="reveal reveal-delay-1">
           <div class="section-tag">// sobre mí</div>
-          <h2>Enseño Java<br>como quien<br>acaba de aprenderlo.</h2>
-          <p>Soy desarrollador Java con experiencia real en proyectos de producción. Domino el lenguaje en profundidad:
-            desde la JVM hasta patrones de diseño, algoritmos y arquitectura limpia.</p>
-          <p>Mi ventaja como profesor es que todavía recuerdo exactamente los puntos donde uno se atasca. No doy por
-            sentado nada, explico cada decisión y trabajo siempre con código real.</p>
+          <h2><br>Software Engineer &<br>Mentor Java.</h2>
+          <p>Soy Ingeniero de Software especializado en el ecosistema Java (Spring Boot, Microservicios, Cloud). Cuento
+            con sólida experiencia desarrollando arquitecturas escalables, APIs RESTful y soluciones backend robustas
+            para entornos de producción exigentes.</p>
+          <p>Combino mi experiencia en la industria con mi pasión por la formación técnica. Mi enfoque pedagógico es
+            100% práctico y orientado a la realidad empresarial: no solo enseño a programar, sino a aplicar código
+            limpio, patrones de diseño y buenas prácticas que distinguen a un desarrollador profesional.</p>
           <div class="skills-chips">
             <span class="skill-chip">Java SE</span>
             <span class="skill-chip">Stream API</span>
             <span class="skill-chip">Patrones GoF</span>
             <span class="skill-chip">SOLID</span>
             <span class="skill-chip">Clean Code</span>
-            <span class="skill-chip">JUnit 5</span>
-            <span class="skill-chip">Mockito</span>
+            <span class="skill-chip">REST API</span>
+            <span class="skill-chip">Spring Boot + Spring Security</span>
             <span class="skill-chip">Algoritmos</span>
-            <span class="skill-chip">TDD</span>
+            <span class="skill-chip">Arquitectura</span>
             <span class="skill-chip">Git</span>
           </div>
         </div>
