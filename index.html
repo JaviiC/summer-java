@@ -624,45 +624,33 @@
     /* ─── PREVIEW GRATUITO ─── */
     .preview-section {
       background: var(--bg);
-      padding: 4rem 2rem;
-    }
-
-    .preview-banner {
-      max-width: 860px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, rgba(249, 115, 22, 0.07) 0%, rgba(96, 165, 250, 0.05) 100%);
-      border: 1px solid var(--accent-border);
-      border-radius: var(--radius);
-      padding: 3rem 3.5rem;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2.5rem;
-      align-items: center;
+      padding: 6rem 2rem;
       position: relative;
       overflow: hidden;
     }
 
-    .preview-banner::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--blue));
-    }
-
     .preview-bg-animation {
       position: absolute;
-      top: 50%;
-      right: 15%;
-      transform: translateY(-50%) rotate(-2deg);
+      top: 0;
+      left: 5%;
+      width: 150%;
       font-family: 'DM Mono', monospace;
-      font-size: 0.85rem;
-      color: rgba(96, 165, 250, 0.12);
+      font-size: 1.15rem;
+      color: rgba(96, 165, 250, 0.035);
       pointer-events: none;
       z-index: 0;
-      line-height: 1.6;
+      line-height: 1.7;
+      animation: codeScroll 45s linear infinite;
+      transform-origin: top left;
+    }
+
+    @keyframes codeScroll {
+      0% { transform: rotate(-3deg) translateY(10%); }
+      100% { transform: rotate(-3deg) translateY(-60%); }
+    }
+
+    .code-line {
+      white-space: pre;
     }
 
     .typewriter-line {
@@ -672,19 +660,23 @@
       width: 0;
     }
 
-    .tl-1 { animation: typeCode1 12s steps(15, end) infinite; }
-    .tl-2 { animation: typeCode2 12s steps(28, end) infinite 1.5s; }
-    .tl-3 { animation: typeCode3 12s steps(33, end) infinite 3s; }
-    .tl-4 { animation: typeCode4 12s steps(18, end) infinite 4.5s; }
-    .tl-5 { animation: typeCode5 12s steps(29, end) infinite 6s; }
+    .tl-1 { animation: typeCode1 18s steps(15, end) infinite; }
+    .tl-2 { animation: typeCode2 18s steps(38, end) infinite 1.5s; }
+    .tl-3 { animation: typeCode3 18s steps(58, end) infinite 3.5s; }
+    .tl-4 { animation: typeCode4 18s steps(47, end) infinite 6s; }
+    .tl-5 { animation: typeCode5 18s steps(22, end) infinite 8s; }
+    .tl-6 { animation: typeCode6 18s steps(73, end) infinite 9.5s; }
+    .tl-7 { animation: typeCode7 18s steps(66, end) infinite 12s; }
 
-    @keyframes typeCode1 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.4); } 15%, 85% { width: 15ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
-    @keyframes typeCode2 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.4); } 15%, 85% { width: 28ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
-    @keyframes typeCode3 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.4); } 15%, 85% { width: 33ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
-    @keyframes typeCode4 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.4); } 15%, 85% { width: 18ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
-    @keyframes typeCode5 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.4); } 15%, 85% { width: 29ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
+    @keyframes typeCode1 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 15ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
+    @keyframes typeCode2 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 38ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
+    @keyframes typeCode3 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 58ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
+    @keyframes typeCode4 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 47ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
+    @keyframes typeCode5 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 22ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
+    @keyframes typeCode6 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 73ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
+    @keyframes typeCode7 { 0% { width: 0; border-color: rgba(96, 165, 250, 0.3); } 8%, 92% { width: 66ch; border-color: transparent; } 100% { width: 0; border-color: transparent; } }
 
-    .preview-content, .preview-cta-col {
+    .preview-banner {
       position: relative;
       z-index: 1;
     }
@@ -1684,14 +1676,43 @@
 
   <!-- PREVIEW GRATUITO -->
   <section class="preview-section" id="preview">
+    <div class="preview-bg-animation">
+      <div class="code-line">package com.prime.studio.api;</div>
+      <div class="code-line"><br></div>
+      <div class="code-line">import org.springframework.web.bind.annotation.*;</div>
+      <div class="code-line">import org.springframework.http.ResponseEntity;</div>
+      <div class="code-line">import lombok.RequiredArgsConstructor;</div>
+      <div class="code-line"><br></div>
+      <div class="typewriter-line tl-1">@RestController</div>
+      <div class="typewriter-line tl-2">@RequestMapping("/api/v1/courses")</div>
+      <div class="code-line">@RequiredArgsConstructor</div>
+      <div class="code-line">public class CourseController {</div>
+      <div class="code-line"><br></div>
+      <div class="code-line">    private final CourseService courseService;</div>
+      <div class="code-line"><br></div>
+      <div class="typewriter-line tl-5">    @GetMapping("/{id}")</div>
+      <div class="typewriter-line tl-6">    public ResponseEntity&lt;CourseDTO&gt; getCourse(@PathVariable Long id) {</div>
+      <div class="typewriter-line tl-7">        return ResponseEntity.ok(courseService.findById(id));</div>
+      <div class="code-line">    }</div>
+      <div class="code-line"><br></div>
+      <div class="code-line">    @PostMapping</div>
+      <div class="code-line">    public ResponseEntity&lt;CourseDTO&gt; createCourse(@RequestBody CourseDTO dto) {</div>
+      <div class="code-line">        CourseDTO created = courseService.save(dto);</div>
+      <div class="code-line">        return ResponseEntity.status(HttpStatus.CREATED).body(created);</div>
+      <div class="code-line">    }</div>
+      <div class="code-line"><br></div>
+      <div class="typewriter-line tl-3">    @PutMapping("/{id}/publish")</div>
+      <div class="typewriter-line tl-4">    public ResponseEntity&lt;Void&gt; publishCourse(@PathVariable Long id) {</div>
+      <div class="code-line">        courseService.publish(id);</div>
+      <div class="code-line">        return ResponseEntity.noContent().build();</div>
+      <div class="code-line">    }</div>
+      <div class="code-line">}</div>
+      <div class="code-line"><br></div>
+      <div class="code-line">// Pattern: MVC Architecture</div>
+      <div class="code-line">// Domain: E-learning Platform</div>
+    </div>
+
     <div class="preview-banner reveal">
-      <div class="preview-bg-animation">
-        <div class="typewriter-line tl-1">@RestController</div>
-        <div class="typewriter-line tl-2">@RequestMapping("/api/v1")</div>
-        <div class="typewriter-line tl-3">public class UserController {</div>
-        <div class="typewriter-line tl-4">  @GetMapping</div>
-        <div class="typewriter-line tl-5">  public ResponseEntity&lt;?&gt; {</div>
-      </div>
       <div class="preview-content">
         <div class="preview-eyebrow">📥 Prueba gratuita</div>
         <div class="preview-title">Descarga un adelanto — sin compromiso</div>
