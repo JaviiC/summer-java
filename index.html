@@ -592,19 +592,33 @@
       letter-spacing: 0.06em;
     }
 
-    .flash-badge {
-      background: rgba(248, 113, 113, 0.15) !important;
-      border-color: rgba(248, 113, 113, 0.4) !important;
-      color: var(--red) !important;
-      animation: flashPulse 2s infinite;
+    .flash-ribbon {
+      position: absolute;
+      top: 24px;
+      right: -40px;
+      background: #ef4444;
+      color: white;
+      padding: 6px 45px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transform: rotate(45deg);
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+      z-index: 10;
+      text-align: center;
+      animation: ribbonPulse 2s infinite;
     }
 
-    @keyframes flashPulse {
+    @keyframes ribbonPulse {
       0%, 100% {
-        box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.4);
+        background: #ef4444;
+        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
       }
       50% {
-        box-shadow: 0 0 0 6px rgba(248, 113, 113, 0);
+        background: #f87171;
+        box-shadow: 0 4px 25px rgba(239, 68, 68, 0.6);
       }
     }
 
@@ -1926,7 +1940,7 @@
         </div>
 
         <div class="mod-card reveal reveal-delay-3">
-          <div class="mod-badge flash-badge">⚡ Ahorras 150€</div>
+          <div class="flash-ribbon">⚡ Ahorra 150€</div>
           <div class="mod-icon">🚀</div>
           <div class="mod-name">Intensivo de verano</div>
           <div class="mod-desc">Un plan estructurado de 4 semanas para subir de nivel de forma acelerada. Ideal para

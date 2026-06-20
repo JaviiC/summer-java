@@ -607,19 +607,33 @@
       margin-bottom: 1.5rem;
     }
 
-    .flash-badge {
-      background: rgba(248, 113, 113, 0.15) !important;
-      border-color: rgba(248, 113, 113, 0.4) !important;
-      color: #f87171 !important;
-      animation: flashPulse 2s infinite;
+    .flash-ribbon {
+      position: absolute;
+      top: 24px;
+      right: -40px;
+      background: #ef4444;
+      color: white;
+      padding: 6px 45px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transform: rotate(45deg);
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+      z-index: 10;
+      text-align: center;
+      animation: ribbonPulse 2s infinite;
     }
 
-    @keyframes flashPulse {
+    @keyframes ribbonPulse {
       0%, 100% {
-        box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.4);
+        background: #ef4444;
+        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
       }
       50% {
-        box-shadow: 0 0 0 6px rgba(248, 113, 113, 0);
+        background: #f87171;
+        box-shadow: 0 4px 25px rgba(239, 68, 68, 0.6);
       }
     }
 
@@ -1167,7 +1181,8 @@
       </div>
 
       <div class="pricing-card reveal reveal-delay-1">
-        <div class="pricing-badge flash-badge">⚡ Ahorras 150€</div>
+        <div class="flash-ribbon">⚡ Ahorra 150€</div>
+        <div class="pricing-badge">★ Pack Intensivo de Verano</div>
         <div class="pricing-amount"><sup>€</sup>199</div>
         <div class="pricing-period">pago único · pack 4 semanas</div>
 
