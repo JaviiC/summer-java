@@ -613,10 +613,13 @@
     }
 
     @keyframes ribbonPulse {
-      0%, 100% {
+
+      0%,
+      100% {
         background: #ef4444;
         box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
       }
+
       50% {
         background: #f87171;
         box-shadow: 0 4px 25px rgba(239, 68, 68, 0.6);
@@ -1724,10 +1727,12 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
-      .cursor, .cursor-ring {
+
+      .cursor,
+      .cursor-ring {
         display: none !important;
       }
-      
+
       body {
         cursor: auto !important;
       }
@@ -2230,10 +2235,9 @@
             <span class="faq-q-text">¿Cómo funciona la primera sesión gratuita?</span>
             <div class="faq-icon">+</div>
           </div>
-          <div class="faq-a">Es una sesión de 30-45 minutos sin coste ni compromiso. La usamos para evaluar tu nivel,
+          <div class="faq-a">Es una sesión de 20-35 minutos sin coste ni compromiso. La usamos para evaluar tu nivel,
             entender qué quieres conseguir y ver si hay buena sintonía entre nosostros. Si decides continuar, acordamos
-            el plan y el
-            horario que más se adapte a ti.</div>
+            el plan y el horario que más se adapte a ti.</div>
         </div>
         <div class="faq-item">
           <div class="faq-q" onclick="toggleFaq(this)">
