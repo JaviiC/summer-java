@@ -405,55 +405,72 @@
       background: var(--bg);
     }
 
-    .includes-grid {
+    .includes-layout {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .includes-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .inc-item {
+      display: flex;
+      align-items: flex-start;
       gap: 1.25rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: padding-left 0.3s ease;
+      cursor: default;
     }
 
-    .inc-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem;
-      transition: border-color 0.3s, transform 0.3s;
-      position: relative;
-      overflow: hidden;
+    .inc-item:first-child {
+      border-top: 1px solid var(--border);
     }
 
-    .inc-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
+    .inc-item:hover {
+      padding-left: 0.5rem;
+    }
+
+    .inc-check {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+      color: var(--accent);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .inc-item:hover .inc-check {
       background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s;
+      color: white;
+      transform: scale(1.1);
     }
 
-    .inc-card:hover {
-      border-color: var(--accent-border);
-      transform: translateY(-4px);
-    }
-
-    .inc-card:hover::after {
-      transform: scaleX(1);
-    }
-
-    .inc-icon {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-      display: block;
+    .inc-text {
+      flex: 1;
     }
 
     .inc-title {
       font-family: 'Syne', sans-serif;
       font-size: 1rem;
       font-weight: 700;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
+      transition: color 0.2s;
+    }
+
+    .inc-item:hover .inc-title {
+      color: var(--accent2);
     }
 
     .inc-desc {
@@ -461,6 +478,184 @@
       color: var(--text2);
       line-height: 1.65;
       font-weight: 300;
+    }
+
+    .includes-right {
+      position: sticky;
+      top: 7rem;
+    }
+
+    .includes-cta-box {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(249, 115, 22, 0.03) 100%);
+      border: 1px solid var(--accent-border);
+      border-radius: 20px;
+      padding: 2.75rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .includes-cta-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), transparent);
+    }
+
+    .includes-cta-glow {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(249,115,22,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .includes-cta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 1rem;
+    }
+
+    .includes-cta-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .includes-cta-title em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .includes-cta-sub {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .includes-price-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .includes-price {
+      font-family: 'Syne', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .includes-price sup {
+      font-size: 1.2rem;
+      font-weight: 600;
+      vertical-align: super;
+    }
+
+    .includes-price-old {
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem;
+      color: var(--text3);
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+
+    .includes-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px;
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      margin-bottom: 1rem;
+    }
+
+    .includes-cta-btn:hover {
+      background: #1ebe5d;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(37, 211, 102, 0.3);
+    }
+
+    .includes-cta-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text3);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .inc-seats-bar {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .inc-seats-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text3);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .inc-seats-label span:last-child {
+      color: var(--accent);
+    }
+
+    .inc-seats-track {
+      height: 4px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .inc-seats-fill {
+      height: 100%;
+      width: 75%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 100px;
+      animation: fillBar 1.5s 0.5s ease both;
+    }
+
+    @keyframes fillBar {
+      from { width: 0%; }
+      to   { width: 75%; }
+    }
+
+    @media (max-width: 900px) {
+      .includes-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .includes-right {
+        position: static;
+      }
     }
 
     /* ─── TIMELINE DETALLADO ─── */
@@ -892,6 +1087,294 @@
       transition-delay: 0.6s;
     }
 
+    /* ─── PLAYGROUND ─── */
+    .playground-section {
+      background: var(--bg2);
+    }
+
+    .playground-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .playground-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .playground-difficulty {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(74, 222, 128, 0.1);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      color: var(--green);
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .playground-shell {
+      background: #0a0d16;
+      border: 1px solid var(--border2);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+    }
+
+    .pg-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.25rem;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pg-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .pg-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .pg-dots span:nth-child(1) { background: #ff5f57; }
+    .pg-dots span:nth-child(2) { background: #ffbd2e; }
+    .pg-dots span:nth-child(3) { background: #28ca41; }
+
+    .pg-filename {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text3);
+      letter-spacing: 0.04em;
+    }
+
+    .pg-lang {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .pg-problem {
+      padding: 1.5rem 1.75rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .pg-problem-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .pg-problem-text {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .pg-problem-text strong {
+      color: var(--accent2);
+    }
+
+    .pg-example {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    .pg-editor-area {
+      position: relative;
+    }
+
+    .pg-editor {
+      width: 100%;
+      min-height: 220px;
+      background: transparent;
+      color: #e2e8f0;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      padding: 1.25rem 1.75rem;
+      border: none;
+      outline: none;
+      resize: vertical;
+      tab-size: 2;
+      caret-color: var(--accent);
+    }
+
+    .pg-editor::selection {
+      background: rgba(249, 115, 22, 0.2);
+    }
+
+    .pg-footer {
+      padding: 1rem 1.75rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .pg-hint {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text3);
+    }
+
+    .pg-run-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .pg-run-btn:hover:not(:disabled) {
+      background: var(--accent2);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(249,115,22,0.3);
+    }
+
+    .pg-run-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .pg-result {
+      margin-top: 1.25rem;
+      border-radius: 10px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .pg-result.visible {
+      display: block;
+    }
+
+    .pg-result-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .pg-result.pass .pg-result-bar {
+      background: rgba(74, 222, 128, 0.1);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      color: var(--green);
+      border-radius: 10px 10px 0 0;
+    }
+
+    .pg-result.fail .pg-result-bar {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      color: #f87171;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .pg-result.error .pg-result-bar {
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      color: var(--amber);
+      border-radius: 10px 10px 0 0;
+    }
+
+    .pg-result-detail {
+      padding: 0.85rem 1.25rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: var(--text2);
+    }
+
+    .pg-result.pass .pg-result-detail { background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.15); border-top: none; border-radius: 0 0 10px 10px; }
+    .pg-result.fail .pg-result-detail { background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-top: none; border-radius: 0 0 10px 10px; }
+    .pg-result.error .pg-result-detail { background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.15); border-top: none; border-radius: 0 0 10px 10px; }
+
+    .pg-success-hook {
+      margin-top: 1.25rem;
+      background: linear-gradient(135deg, rgba(249,115,22,0.1), rgba(249,115,22,0.04));
+      border: 1px solid var(--accent-border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .pg-success-hook.visible {
+      display: flex;
+    }
+
+    .pg-success-text {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .pg-success-text strong {
+      color: var(--accent);
+    }
+
+    .pg-success-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: #25D366;
+      color: white;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .pg-success-cta:hover {
+      background: #1ebe5d;
+      transform: translateY(-1px);
+    }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
 
@@ -1011,53 +1494,211 @@
 
   <div class="divider"></div>
 
+  <!-- PLAYGROUND -->
+  <section class="playground-section">
+    <div class="container">
+      <div class="playground-wrap">
+        <div class="reveal" style="margin-bottom: 2rem;">
+          <div class="section-tag">// pruébalo tú mismo</div>
+          <h2 class="section-title">¿Ya sabes Java?<br><em style="font-style:normal; color:var(--accent);">Demuéstralo.</em></h2>
+          <p class="section-sub">Resuelve este reto de nivel básico. Si no sabes cómo, no te preocupes — para eso estamos nosotros.</p>
+        </div>
+
+        <div class="reveal reveal-delay-1">
+          <div class="playground-header">
+            <div class="playground-difficulty">● Nivel básico</div>
+            <div style="font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--text3);">Powered by Piston · Java 21</div>
+          </div>
+
+          <div class="playground-shell">
+            <!-- Topbar estilo editor -->
+            <div class="pg-topbar">
+              <div class="pg-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="pg-filename">Solution.java</div>
+              <div class="pg-lang">Java 21</div>
+            </div>
+
+            <!-- Enunciado del problema -->
+            <div class="pg-problem">
+              <div class="pg-problem-label">🧩 Reto · Suma de dos números</div>
+              <div class="pg-problem-text">
+                Completa el método <strong>suma(int a, int b)</strong> para que devuelva la suma de los dos números enteros recibidos.
+              </div>
+              <div class="pg-example">
+                suma(3, 4)  →  7<br>
+                suma(10, 5) →  15<br>
+                suma(-2, 2) →  0
+              </div>
+            </div>
+
+            <!-- Editor de código -->
+            <div class="pg-editor-area">
+              <textarea class="pg-editor" id="pgEditor" spellcheck="false">public class Solution {
+
+    public static int suma(int a, int b) {
+        // escribe tu solución aquí
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(suma(3, 4));
+        System.out.println(suma(10, 5));
+        System.out.println(suma(-2, 2));
+    }
+
+}</textarea>
+            </div>
+
+            <!-- Footer con botón -->
+            <div class="pg-footer">
+              <div class="pg-hint">💡 Tab = 2 espacios &nbsp;·&nbsp; Los tests se ejecutan en el servidor</div>
+              <button class="pg-run-btn" id="pgRunBtn" onclick="runPlayground()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                Ejecutar
+              </button>
+            </div>
+          </div>
+
+          <!-- Resultado -->
+          <div class="pg-result" id="pgResult">
+            <div class="pg-result-bar">
+              <span id="pgResultIcon"></span>
+              <span id="pgResultMsg"></span>
+            </div>
+            <div class="pg-result-detail" id="pgResultDetail"></div>
+          </div>
+
+          <!-- Hook post-éxito -->
+          <div class="pg-success-hook" id="pgSuccessHook">
+            <div class="pg-success-text">
+              <strong>¡Correcto! 🎉</strong> Si esto fue fácil, imagina lo que puedes aprender en 4 semanas.
+            </div>
+            <a href="https://wa.me/34674372040?text=Hola%2C%20acabo%20de%20resolver%20el%20reto%20de%20Java%20en%20tu%20web%20y%20me%20interesa%20el%20plan%20intensivo!"
+              class="pg-success-cta" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Quiero aprender más
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
   <!-- QUÉ INCLUYE -->
   <section class="includes-section">
     <div class="container">
-      <div class="reveal">
+      <div class="reveal" style="margin-bottom: 3.5rem;">
         <div class="section-tag">// qué incluye</div>
         <h2 class="section-title">Todo lo que necesitas,<br>en un solo pack.</h2>
-        <p class="section-sub">El plan intensivo está diseñado para que no tengas que buscar nada más. Todo incluido
-          desde el primer día.</p>
+        <p class="section-sub">Sin extras de pago, sin sorpresas. Desde el primer día tienes
+          todo lo que hace falta para llegar al nivel avanzado.</p>
       </div>
 
-      <div class="includes-grid">
-        <div class="inc-card reveal reveal-delay-1">
-          <span class="inc-icon">🎯</span>
-          <div class="inc-title">12 sesiones de 2h</div>
-          <div class="inc-desc">3 sesiones semanales durante 4 semanas. Ritmo intensivo pero sostenible, con tiempo para
-            practicar entre clases.</div>
+      <div class="includes-layout">
+
+        <!-- Lista de valor -->
+        <div class="includes-left reveal">
+
+          <div class="inc-item">
+            <div class="inc-check">✓</div>
+            <div class="inc-text">
+              <div class="inc-title">12 sesiones en vivo · 24h de formación</div>
+              <div class="inc-desc">3 sesiones de 2h por semana durante 4 semanas. Ritmo intensivo pero sostenible, con tiempo para practicar entre clases.</div>
+            </div>
+          </div>
+
+          <div class="inc-item">
+            <div class="inc-check">✓</div>
+            <div class="inc-text">
+              <div class="inc-title">Material propio + repositorio privado</div>
+              <div class="inc-desc">Apuntes, ejercicios resueltos y acceso a un repo privado en GitHub con todo el código del curso.</div>
+            </div>
+          </div>
+
+          <div class="inc-item">
+            <div class="inc-check">✓</div>
+            <div class="inc-text">
+              <div class="inc-title">Proyecto final para tu portfolio</div>
+              <div class="inc-desc">Construyes una app real con arquitectura limpia que puedes enseñar en una entrevista o subir a GitHub con orgullo.</div>
+            </div>
+          </div>
+
+          <div class="inc-item">
+            <div class="inc-check">✓</div>
+            <div class="inc-text">
+              <div class="inc-title">Soporte por WhatsApp entre sesiones</div>
+              <div class="inc-desc">¿Tienes una duda a las 10 de la noche? Te respondo. Tu progreso monitorizado semana a semana.</div>
+            </div>
+          </div>
+
+          <div class="inc-item">
+            <div class="inc-check">✓</div>
+            <div class="inc-text">
+              <div class="inc-title">Code review profesional</div>
+              <div class="inc-desc">Feedback real sobre tu código como si estuvieras en un equipo de desarrollo. No solo si funciona — si está bien hecho.</div>
+            </div>
+          </div>
+
+          <div class="inc-item">
+            <div class="inc-check">✓</div>
+            <div class="inc-text">
+              <div class="inc-title">Certificado digital de finalización</div>
+              <div class="inc-desc">Al terminar el programa recibes un certificado que acredita el contenido trabajado y el proyecto entregado.</div>
+            </div>
+          </div>
+
+          <div class="inc-item">
+            <div class="inc-check">✓</div>
+            <div class="inc-text">
+              <div class="inc-title">Primera sesión de diagnóstico gratuita</div>
+              <div class="inc-desc">Antes de empezar evaluamos juntos tu nivel real para asegurarnos de que el ritmo es el adecuado para ti.</div>
+            </div>
+          </div>
+
         </div>
-        <div class="inc-card reveal reveal-delay-2">
-          <span class="inc-icon">📦</span>
-          <div class="inc-title">Material y recursos</div>
-          <div class="inc-desc">Apuntes propios, ejercicios resueltos, repositorio privado en GitHub y referencias a
-            documentación oficial.</div>
+
+        <!-- CTA box lateral -->
+        <div class="includes-right reveal reveal-delay-2">
+          <div class="includes-cta-box">
+            <div class="includes-cta-glow"></div>
+            <div class="includes-cta-label">// reserva tu plaza</div>
+            <div class="includes-cta-title">Empieza este verano.<br>Llega al nivel <em>avanzado</em>.</div>
+            <div class="includes-cta-sub">Un único pago. Sin suscripciones. Sin compromiso más allá de las 4 semanas.</div>
+
+            <div class="includes-price-row">
+              <div>
+                <div class="includes-price-old">€349</div>
+                <div class="includes-price"><sup>€</sup>199</div>
+              </div>
+              <div style="font-family:'DM Mono',monospace; font-size:0.75rem; color:var(--text3); margin-bottom:4px; line-height:1.5;">pago único<br>pack 4 semanas</div>
+            </div>
+
+            <a href="https://wa.me/34674372040?text=Hola%2C%20quiero%20reservar%20una%20plaza%20para%20el%20plan%20intensivo%20de%20Java%20de%20verano%20(199%E2%82%AC)."
+              class="includes-cta-btn" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Reservar mi plaza
+            </a>
+
+            <div class="includes-cta-note">📌 Bizum · Transferencia · Sin tarjeta<br>Plazas limitadas para julio y agosto</div>
+
+            <div class="inc-seats-bar">
+              <div class="inc-seats-label">
+                <span>Ocupación julio</span>
+                <span>3 plazas libres</span>
+              </div>
+              <div class="inc-seats-track">
+                <div class="inc-seats-fill"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="inc-card reveal reveal-delay-3">
-          <span class="inc-icon">🏗️</span>
-          <div class="inc-title">Proyecto final real</div>
-          <div class="inc-desc">Desarrollarás una aplicación completa con arquitectura limpia que puedes incluir
-            directamente en tu portfolio.</div>
-        </div>
-        <div class="inc-card reveal reveal-delay-4">
-          <span class="inc-icon">👤</span>
-          <div class="inc-title">Seguimiento personalizado</div>
-          <div class="inc-desc">Acceso por WhatsApp para resolver dudas entre sesiones. Tu progreso, monitorizado semana
-            a semana.</div>
-        </div>
-        <div class="inc-card reveal reveal-delay-5">
-          <span class="inc-icon">🧪</span>
-          <div class="inc-title">Revisión de código</div>
-          <div class="inc-desc">Code review profesional de tus ejercicios y proyecto. Feedback real como si estuvieras
-            en un equipo de desarrollo.</div>
-        </div>
-        <div class="inc-card reveal reveal-delay-6">
-          <span class="inc-icon">🏆</span>
-          <div class="inc-title">Certificado de finalización</div>
-          <div class="inc-desc">Al completar el programa recibirás un certificado digital que acredita los contenidos
-            trabajados y el proyecto entregado.</div>
-        </div>
+
       </div>
     </div>
   </section>
@@ -1156,17 +1797,17 @@
           <div class="tl-dot">04</div>
           <div class="tl-body">
             <div class="tl-week">Semana 4 — Proyecto final</div>
-            <div class="tl-title">Testing, arquitectura limpia y entrega</div>
+            <div class="tl-title">Microservicios, arquitectura limpia y proyecto</div>
             <div class="tl-desc">
               La semana más satisfactoria del programa. Construirás el proyecto final desde cero con todo lo aprendido:
               arquitectura en capas, TDD, tests con JUnit 5 y Mockito, y una revisión de código profesional.
               El resultado es algo que puedes enseñar en una entrevista o subir a GitHub con orgullo.
             </div>
             <div class="tl-topics">
-              <span class="tl-topic">TDD</span>
+              <span class="tl-topic">Spring</span>
               <span class="tl-topic">JUnit 5</span>
               <span class="tl-topic">Mockito</span>
-              <span class="tl-topic">AssertJ</span>
+              <span class="tl-topic">OpenApi Contract</span>
               <span class="tl-topic">Arquitectura en capas</span>
               <span class="tl-topic">Code review profesional</span>
               <span class="tl-topic">Proyecto entregable</span>
@@ -1310,7 +1951,7 @@
       requestAnimationFrame(animateRing);
     })();
 
-    document.querySelectorAll('a, button, .inc-card, .faq-q').forEach(el => {
+    document.querySelectorAll('a, button, .inc-item, .faq-q').forEach(el => {
       el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
       el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
     });
@@ -1333,6 +1974,119 @@
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
+    }
+
+    /* ── PLAYGROUND ── */
+
+    // Tab key support in the editor
+    document.getElementById('pgEditor').addEventListener('keydown', function(e) {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const start = this.selectionStart;
+        const end = this.selectionEnd;
+        this.value = this.value.substring(0, start) + '  ' + this.value.substring(end);
+        this.selectionStart = this.selectionEnd = start + 2;
+      }
+    });
+
+    // Expected outputs for the 3 test cases
+    const EXPECTED = ['7', '15', '0'];
+
+    async function runPlayground() {
+      const btn = document.getElementById('pgRunBtn');
+      const result = document.getElementById('pgResult');
+      const icon = document.getElementById('pgResultIcon');
+      const msg = document.getElementById('pgResultMsg');
+      const detail = document.getElementById('pgResultDetail');
+      const hook = document.getElementById('pgSuccessHook');
+      const code = document.getElementById('pgEditor').value;
+
+      // Reset
+      result.className = 'pg-result';
+      hook.className = 'pg-success-hook';
+      btn.disabled = true;
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="animation:spin 0.8s linear infinite"><path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8V2z"/></svg> Ejecutando...';
+
+      // Add spin animation if not present
+      if (!document.getElementById('pgSpinStyle')) {
+        const s = document.createElement('style');
+        s.id = 'pgSpinStyle';
+        s.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+        document.head.appendChild(s);
+      }
+
+      try {
+        const res = await fetch('https://emkc.org/api/v2/piston/execute', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            language: 'java',
+            version: '*',
+            files: [{ name: 'Solution.java', content: code }]
+          })
+        });
+
+        if (!res.ok) throw new Error('Error en el servidor de ejecución.');
+
+        const data = await res.json();
+        const run = data.run;
+
+        // Compilation error
+        if (data.compile && data.compile.code !== 0) {
+          result.className = 'pg-result error visible';
+          icon.textContent = '⚠️';
+          msg.textContent = 'Error de compilación';
+          detail.textContent = data.compile.stderr || data.compile.output || 'Revisa la sintaxis del código.';
+          btn.disabled = false;
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Ejecutar';
+          return;
+        }
+
+        // Runtime error
+        if (run.code !== 0 && run.stderr) {
+          result.className = 'pg-result error visible';
+          icon.textContent = '⚠️';
+          msg.textContent = 'Error en tiempo de ejecución';
+          detail.textContent = run.stderr.split('\n').slice(0, 4).join('\n');
+          btn.disabled = false;
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Ejecutar';
+          return;
+        }
+
+        // Parse output lines
+        const lines = run.stdout.trim().split('\n').map(l => l.trim());
+
+        // Validate each test case
+        let allPass = true;
+        const testResults = EXPECTED.map((exp, i) => {
+          const got = lines[i] !== undefined ? lines[i] : '(sin salida)';
+          const pass = got === exp;
+          if (!pass) allPass = false;
+          return `Test ${i + 1}: esperado ${exp} — obtenido ${got}  ${pass ? '✔️' : '❌'}`;
+        });
+
+        if (allPass) {
+          result.className = 'pg-result pass visible';
+          icon.textContent = '✅';
+          msg.textContent = 'Todos los tests pasados — ¡Excelente!';
+          detail.textContent = testResults.join('\n');
+          hook.className = 'pg-success-hook visible';
+        } else {
+          result.className = 'pg-result fail visible';
+          icon.textContent = '❌';
+          msg.textContent = 'Algunos tests han fallado';
+          detail.textContent = testResults.join('\n') + '\n\n¿Necesitas una pista? Escríbenos por WhatsApp.';
+        }
+
+      } catch (err) {
+        result.className = 'pg-result error visible';
+        icon.textContent = '⚠️';
+        msg.textContent = 'No se pudo conectar con el servidor';
+        detail.textContent = 'Comprueba tu conexión a internet e inténtalo de nuevo.';
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Volver a ejecutar';
     }
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
