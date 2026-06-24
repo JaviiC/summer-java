@@ -510,7 +510,7 @@
       right: -60px;
       width: 200px;
       height: 200px;
-      background: radial-gradient(circle, rgba(249,115,22,0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -630,7 +630,7 @@
 
     .inc-seats-track {
       height: 4px;
-      background: rgba(255,255,255,0.07);
+      background: rgba(255, 255, 255, 0.07);
       border-radius: 100px;
       overflow: hidden;
     }
@@ -644,8 +644,13 @@
     }
 
     @keyframes fillBar {
-      from { width: 0%; }
-      to   { width: 75%; }
+      from {
+        width: 0%;
+      }
+
+      to {
+        width: 75%;
+      }
     }
 
     @media (max-width: 900px) {
@@ -653,6 +658,7 @@
         grid-template-columns: 1fr;
         gap: 3rem;
       }
+
       .includes-right {
         position: static;
       }
@@ -1126,7 +1132,7 @@
       border: 1px solid var(--border2);
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
     }
 
     .pg-topbar {
@@ -1134,7 +1140,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0.9rem 1.25rem;
-      background: rgba(255,255,255,0.03);
+      background: rgba(255, 255, 255, 0.03);
       border-bottom: 1px solid var(--border);
     }
 
@@ -1149,9 +1155,17 @@
       border-radius: 50%;
     }
 
-    .pg-dots span:nth-child(1) { background: #ff5f57; }
-    .pg-dots span:nth-child(2) { background: #ffbd2e; }
-    .pg-dots span:nth-child(3) { background: #28ca41; }
+    .pg-dots span:nth-child(1) {
+      background: #ff5f57;
+    }
+
+    .pg-dots span:nth-child(2) {
+      background: #ffbd2e;
+    }
+
+    .pg-dots span:nth-child(3) {
+      background: #28ca41;
+    }
 
     .pg-filename {
       font-family: 'DM Mono', monospace;
@@ -1197,7 +1211,7 @@
     }
 
     .pg-example {
-      background: rgba(255,255,255,0.03);
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 0.75rem 1rem;
@@ -1211,20 +1225,84 @@
       position: relative;
     }
 
+    /* shared font/size so pre and textarea align perfectly */
+    .pg-highlight,
     .pg-editor {
-      width: 100%;
-      min-height: 220px;
-      background: transparent;
-      color: #e2e8f0;
       font-family: 'DM Mono', monospace;
       font-size: 0.85rem;
       line-height: 1.7;
       padding: 1.25rem 1.75rem;
+      white-space: pre;
+      tab-size: 2;
+      margin: 0;
+    }
+
+    /* The read-only highlighted layer */
+    .pg-highlight {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      color: transparent;
+      /* base text invisible — only spans show */
+    }
+
+    /* Syntax token colours */
+    .pg-highlight .j-kw {
+      color: #c792ea;
+    }
+
+    /* keywords        */
+    .pg-highlight .j-type {
+      color: #82aaff;
+    }
+
+    /* types / classes */
+    .pg-highlight .j-str {
+      color: #c3e88d;
+    }
+
+    /* strings         */
+    .pg-highlight .j-num {
+      color: #f78c6c;
+    }
+
+    /* numbers         */
+    .pg-highlight .j-cmt {
+      color: #546e7a;
+      font-style: italic;
+    }
+
+    /* comments */
+    .pg-highlight .j-ann {
+      color: #ffcb6b;
+    }
+
+    /* annotations     */
+    .pg-highlight .j-meth {
+      color: #82aaff;
+    }
+
+    /* method names    */
+    .pg-highlight .j-plain {
+      color: #e2e8f0;
+    }
+
+    /* plain text      */
+
+    /* The editable transparent-text layer on top */
+    .pg-editor {
+      position: relative;
+      width: 100%;
+      min-height: 180px;
+      background: transparent;
+      color: transparent;
+      caret-color: var(--accent);
       border: none;
       outline: none;
       resize: vertical;
-      tab-size: 2;
-      caret-color: var(--accent);
+      z-index: 1;
+      -webkit-text-fill-color: transparent;
     }
 
     .pg-editor::selection {
@@ -1266,7 +1344,7 @@
     .pg-run-btn:hover:not(:disabled) {
       background: var(--accent2);
       transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(249,115,22,0.3);
+      box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
     }
 
     .pg-run-btn:disabled {
@@ -1324,13 +1402,30 @@
       color: var(--text2);
     }
 
-    .pg-result.pass .pg-result-detail { background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.15); border-top: none; border-radius: 0 0 10px 10px; }
-    .pg-result.fail .pg-result-detail { background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-top: none; border-radius: 0 0 10px 10px; }
-    .pg-result.error .pg-result-detail { background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.15); border-top: none; border-radius: 0 0 10px 10px; }
+    .pg-result.pass .pg-result-detail {
+      background: rgba(74, 222, 128, 0.05);
+      border: 1px solid rgba(74, 222, 128, 0.15);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .pg-result.fail .pg-result-detail {
+      background: rgba(239, 68, 68, 0.05);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .pg-result.error .pg-result-detail {
+      background: rgba(251, 191, 36, 0.05);
+      border: 1px solid rgba(251, 191, 36, 0.15);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+    }
 
     .pg-success-hook {
       margin-top: 1.25rem;
-      background: linear-gradient(135deg, rgba(249,115,22,0.1), rgba(249,115,22,0.04));
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(249, 115, 22, 0.04));
       border: 1px solid var(--accent-border);
       border-radius: 10px;
       padding: 1.25rem 1.5rem;
@@ -1500,14 +1595,17 @@
       <div class="playground-wrap">
         <div class="reveal" style="margin-bottom: 2rem;">
           <div class="section-tag">// pruébalo tú mismo</div>
-          <h2 class="section-title">¿Ya sabes Java?<br><em style="font-style:normal; color:var(--accent);">Demuéstralo.</em></h2>
-          <p class="section-sub">Resuelve este reto de nivel básico. Si no sabes cómo, no te preocupes — para eso estamos nosotros.</p>
+          <h2 class="section-title">¿Ya sabes Java?<br><em
+              style="font-style:normal; color:var(--accent);">Demuéstralo.</em></h2>
+          <p class="section-sub">Resuelve este reto de nivel básico. Si no sabes cómo, no te preocupes — para eso
+            estamos nosotros.</p>
         </div>
 
         <div class="reveal reveal-delay-1">
           <div class="playground-header">
             <div class="playground-difficulty">● Nivel básico</div>
-            <div style="font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--text3);">Powered by Piston · Java 21</div>
+            <div style="font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--text3);">Powered by Piston ·
+              Java 21</div>
           </div>
 
           <div class="playground-shell">
@@ -1524,36 +1622,31 @@
             <div class="pg-problem">
               <div class="pg-problem-label">🧩 Reto · Suma de dos números</div>
               <div class="pg-problem-text">
-                Completa el método <strong>suma(int a, int b)</strong> para que devuelva la suma de los dos números enteros recibidos.
+                Completa el método <strong>suma(int a, int b)</strong> para que devuelva la suma de los dos números
+                enteros recibidos.
               </div>
               <div class="pg-example">
-                suma(3, 4)  →  7<br>
-                suma(10, 5) →  15<br>
-                suma(-2, 2) →  0
+                suma(3, 4) → 7<br>
+                suma(10, 5) → 15<br>
+                suma(-2, 2) → 0
               </div>
             </div>
 
-            <!-- Editor de código -->
-            <div class="pg-editor-area">
-              <textarea class="pg-editor" id="pgEditor" spellcheck="false">public class Solution {
+            <!-- Editor de código con syntax highlighting -->
+            <div class="pg-editor-area" id="pgEditorArea">
+              <pre class="pg-highlight" id="pgHighlight" aria-hidden="true"></pre>
+              <textarea class="pg-editor" id="pgEditor" spellcheck="false" autocomplete="off">public class Solution {
 
     public static int suma(int a, int b) {
         // escribe tu solución aquí
         return 0;
     }
 
-    public static void main(String[] args) {
-        System.out.println(suma(3, 4));
-        System.out.println(suma(10, 5));
-        System.out.println(suma(-2, 2));
-    }
-
-}</textarea>
-            </div>
+}
 
             <!-- Footer con botón -->
             <div class="pg-footer">
-              <div class="pg-hint">💡 Tab = 2 espacios &nbsp;·&nbsp; Los tests se ejecutan en el servidor</div>
+              <div class="pg-hint">💡 Ctrl + Enter para ejecutar</div>
               <button class="pg-run-btn" id="pgRunBtn" onclick="runPlayground()">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                 Ejecutar
@@ -1819,54 +1912,6 @@
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- PRICING -->
-  <section class="pricing-section">
-    <div class="container">
-      <div class="reveal" style="text-align:center; margin-bottom: 3rem;">
-        <div class="section-tag">// precio</div>
-        <h2 class="section-title">Inversión única,<br>resultados reales.</h2>
-        <p class="section-sub" style="margin: 0 auto;">Sin suscripciones, sin sorpresas. Un único pago que cubre las 4
-          semanas completas.</p>
-      </div>
-
-      <div class="pricing-card reveal reveal-delay-1">
-        <div class="flash-ribbon">Ahorra 150€</div>
-        <div class="pricing-badge">★ Pack Intensivo de Verano</div>
-        <div class="pricing-amount"><sup>€</sup>199</div>
-        <div class="pricing-period">pago único · pack 4 semanas</div>
-
-        <ul class="pricing-features">
-          <li>12 sesiones de 2h (24h de formación en total)</li>
-          <li>Material, apuntes y repositorio privado incluidos</li>
-          <li>Proyecto final real para tu portfolio</li>
-          <li>Seguimiento por WhatsApp entre sesiones</li>
-          <li>Code review profesional de todos los ejercicios</li>
-          <li>Certificado digital de finalización</li>
-          <li>Online o presencial en Madrid — tú eliges</li>
-          <li>Primera sesión de diagnóstico gratuita</li>
-        </ul>
-
-        <a href="https://wa.me/34674372040?text=Hola%2C%20quiero%20reservar%20una%20plaza%20para%20el%20plan%20intensivo%20de%20Java%20de%20verano%20(199%E2%82%AC)."
-          class="pricing-cta" target="_blank" rel="noopener" id="ctaWhatsapp">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-          </svg>
-          Reservar mi plaza por WhatsApp
-        </a>
-        <a href="mailto:summer@primeofstudio.com?subject=Reserva%20Plan%20Intensivo%20Java%20Verano%202026"
-          class="pricing-email" id="ctaEmail">
-          ✉ Contactar por email
-        </a>
-        <div class="pricing-note">📌 Aceptamos Bizum y transferencia bancaria · Primera sesión de diagnóstico gratuita
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
 
   <!-- FAQ INTENSIVO -->
   <section class="faq-section">
@@ -1979,7 +2024,7 @@
     /* ── PLAYGROUND ── */
 
     // Tab key support in the editor
-    document.getElementById('pgEditor').addEventListener('keydown', function(e) {
+    document.getElementById('pgEditor').addEventListener('keydown', function (e) {
       if (e.key === 'Tab') {
         e.preventDefault();
         const start = this.selectionStart;
